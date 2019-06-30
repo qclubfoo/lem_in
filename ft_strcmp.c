@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/26 14:39:17 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/06/30 10:25:12 by qclubfoo         ###   ########.fr       */
+/*   Created: 2019/06/20 14:12:20 by qclubfoo          #+#    #+#             */
+/*   Updated: 2019/06/28 16:06:04 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/lem_in.h"
+#include "./inc/lem_in.h"
 
-void	ft_exit(char *str)
+int	ft_strcmp(char *str, char *find)
 {
-	free(str);
-	str = NULL;
-	write(2, "Error\n", 6);
-	exit(0);
-}
+	int i;
+	int j;
 
-int 	main(void)
-{
-	char    *str;
-	t_map	map;
-
-	str = ft_read();
-	if (ft_check_map(str))
-		ft_exit(str); // написать функцию для выхода с очисткой строки
-	write(1, "OK\n", 3);
-	// ft_make_map(&map, str);
-	return (0);
+	i = 0;
+	j = 0;
+	while (find[i] != '\0')
+	{
+		while (str[j] != find[i] && str[j] != '\0' && find[i] != '\0')
+			j++;
+		if (str[j] == '\0' && find[i] != '\0')
+			return (0);
+		i++;
+	}
+	if (find[i] == '\0' && str[i] == '\0')
+		return (1);
+	else
+		return (0);
 }
