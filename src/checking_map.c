@@ -12,23 +12,55 @@
 
 #include "../inc/lem_in.h"
 
-int		ft_return (char **str, int err)
+int		ft_check_map(char *input)
 {
-	int	i;
+	char	**str;
+	int		i;
+	t_check	check;
 
+	ft_init_check(&check);
 	i = 0;
+	str = ft_strsplit(input, '\n');
+	if (ft_atoi_err(str[i++], &check.err) < 0 || check.err != 0)
+		return (ft_return(str, 1));
 	while (str[i] != NULL)
 	{
-		free(str[i]);
-		str[i] = NULL;
+		if (ft_check_hash(str, &i, &check))
+			continue ;
+		if (check.check_type == 1 && check.err == 0)
+			check_room(str[i], &check.check_type, &check.rooms, &check.err);
+		if (check.check_type == 2 && check.err == 0)
+			check_bond(str[i], &check.bonds, &check.err);
+		if (check.err != 0)
+			break ;
 		i++;
 	}
-	free(str[i]);
-	str[i] = NULL;
-	free(str);
-	str = NULL;
-	if (err != 0)
+	if (check.err != 0 || check.rooms == 0 || check.bonds == 0)
+		return (ft_return(str, 1));
+	return (ft_return(str, 0));
+}
+
+int		ft_check_hash(char **str, int *i, t_check *check)
+{
+	if (ft_strcmp(str[*i], "##start"))
+	{
+		check->start += 1;
+		if (check->start > 1)
+			check->err = 1;
+		*i += 1;
+	}
+	else if (ft_strcmp(str[*i], "##end"))
+	{
+		check->end += 1;
+		if (check->end > 1)
+			check->err = 1;
+		*i += 1;
+	}
+	else if (str[*i][0] == '#')
+	{
+		*i += 1;
 		return (1);
+	}
 	return (0);
 }
 
@@ -65,60 +97,4 @@ void	check_bond(char *str, int *bonds, int *err)
 	else
 		*bonds += 1;
 	ft_return(check, *err);
-}
-
-int		ft_check_map(char *input)
-{
-	char	**str;
-	int		err;
-	int		i;
-	int		start;
-	int		end;
-	int		rooms;
-	int		bonds;
-	int		check_type;
-
-	err = 0;
-	i = 0;
-	start = 0;
-	end = 0;
-	rooms = 0;
-	bonds = 0;
-	check_type = 1;
-	str = ft_strsplit(input, '\n');
-	if (ft_atoi_err(str[i++], &err) < 0 || err != 0)
-		return (ft_return(str, 1));
-	while (str[i] != NULL)
-	{
-		if (ft_strcmp(str[i], "##start"))
-		{
-			start += 1;
-			if (start > 1)
-				return (ft_return(str, 1));
-			i++;
-		}
-		else if (ft_strcmp(str[i], "##end"))
-		{
-			end += 1;
-			if (end > 1)
-				return (ft_return(str, 1));
-			i++;
-		}
-		else if (str[i][0] == '#')
-		{
-			i++;
-			continue ;
-		}
-		if (check_type == 1)
-			check_room(str[i], &check_type, &rooms, &err);
-		if (check_type == 2 && err == 0)
-			check_bond(str[i], &bonds, &err);
-		if (err != 0)
-			break ;
-		i++;
-	}
-	printf("err = %d\nrooms = %d\nbonds = %d\n", err, rooms, bonds);
-	if (err != 0 || rooms == 0 || bonds == 0)
-		return (ft_return(str, 1));
-	return (ft_return(str, 0));
 }

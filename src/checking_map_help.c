@@ -1,33 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   checking_map_help.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/26 14:39:17 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/06/30 23:10:40 by qclubfoo         ###   ########.fr       */
+/*   Created: 2019/06/30 23:13:51 by qclubfoo          #+#    #+#             */
+/*   Updated: 2019/06/30 23:17:31 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lem_in.h"
 
-void	ft_exit(char *str)
+int		ft_return (char **str, int err)
 {
+	int	i;
+
+	i = 0;
+	while (str[i] != NULL)
+	{
+		free(str[i]);
+		str[i] = NULL;
+		i++;
+	}
+	free(str[i]);
+	str[i] = NULL;
 	free(str);
 	str = NULL;
-	write(2, "Error\n", 6);
-	exit(0);
+	if (err != 0)
+		return (1);
+	return (0);
 }
 
-int 	main(void)
+void	ft_init_check(t_check *check)
 {
-	char    *str;
-
-	str = ft_read();
-	if (ft_check_map(str))
-		ft_exit(str); // написать функцию для выхода с очисткой строки
-	write(1, "OK\n", 3);
-	// ft_make_map(&map, str);
-	return (0);
+	check->err = 0;
+	check->start = 0;
+	check->end = 0;
+	check->rooms = 0;
+	check->bonds = 0;
+	check->check_type = 1;
 }
