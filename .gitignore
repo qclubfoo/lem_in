@@ -2,3 +2,5 @@
 *.DS_Store
 */a.out*
 map.txt
+a.out
+a.out*

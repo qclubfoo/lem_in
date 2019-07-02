@@ -6,7 +6,7 @@
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 14:25:20 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/02 14:00:31 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/02 15:36:00 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,9 @@ void					check_room(char *str, int *check_type, int *rooms, int *err);
 void					check_bond(char *str, int *bonds, int *err);
 int						ft_return (char **str, int err);
 
-
+t_map					*ft_make_map(char *input);
+void					ft_make_room(char *str, int *check_type, t_map *map, int *start, int *end);
+int						ft_hash(char **str, int *i, int *start, int *end);
+t_room					*add_first_room(void);
+t_room					*add_new_room(t_room *head);
 #endif
