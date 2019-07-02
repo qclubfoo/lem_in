@@ -6,7 +6,7 @@
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 14:25:20 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/02 15:36:00 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/02 18:08:45 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,17 @@ typedef struct			s_check
 	int					check_type;
 }						t_check;
 
+typedef struct			s_bond
+{
+	struct s_room		*bond;
+	struct s_bond		*next;
+}						t_bond;
+
 typedef struct			s_room
 {
 	char				*name;
 	int					se;
-	struct s_room		*bonds;
+	struct s_bond		*bonds;
 	struct s_room		*next;
 	int					x;
 	int					y;
@@ -62,6 +68,7 @@ void					check_room(char *str, int *check_type, int *rooms, int *err);
 void					check_bond(char *str, int *bonds, int *err);
 int						ft_return (char **str, int err);
 
+t_bond					*add_first_bond(void);
 t_map					*ft_make_map(char *input);
 void					ft_make_room(char *str, int *check_type, t_map *map, int *start, int *end);
 int						ft_hash(char **str, int *i, int *start, int *end);
