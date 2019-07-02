@@ -12,7 +12,7 @@
 
 #include "../inc/lem_in.h"
 
-int		ft_check_map(char *input)
+t_check		*ft_check_map(char *input)
 {
 	char	**str;
 	int		i;
@@ -37,7 +37,8 @@ int		ft_check_map(char *input)
 	}
 	if (check.err != 0 || check.rooms == 0 || check.bonds == 0)
 		return (ft_return(str, 1));
-	return (ft_return(str, 0));
+	ft_return (str, 0);
+	return (&check);
 }
 
 int		ft_check_hash(char **str, int *i, t_check *check)

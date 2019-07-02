@@ -6,7 +6,7 @@
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 09:42:16 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/06/29 10:40:21 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/01 23:34:16 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@ t_room		*add_first_room(void)
 {
 	t_room	*first_room;
 
-	first_room = (t_room**)malloc(sizeof(t_room));
-	first_room->start = 0;
-	first_room->finish = 0;
+	first_room = (t_room*)malloc(sizeof(t_room));
+	first_room->se = 0;
 	first_room->next = NULL;
 	return (first_room);
 }

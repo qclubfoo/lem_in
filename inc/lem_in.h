@@ -6,7 +6,7 @@
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 14:25:20 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/06/30 23:19:31 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/01 23:34:40 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,38 @@ typedef struct			s_check
 	int					check_type;
 }						t_check;
 
+typedef struct			s_room
+{
+	char				*name;
+	int					se;
+	struct s_room		*bonds;
+	struct s_room		*next;
+	int					x;
+	int					y;
+}						t_room;
+
+typedef struct			s_map
+{
+	int					ants;
+	struct s_room		*rooms;
+}						t_map;
+
 int						ft_strncpy(char *dst, char *src, int i);
 int						ft_strlen(char *str);
 void					ft_bzero(char *str, int len);
 char					**ft_strsplit(char *str, char del);
 int						ft_atoi_err(char *str, int *err);
 int						ft_strcmp(char *str, char *find);
-
+int						ft_atoi(char *str);
 char					*ft_read(void);
 char					*ft_realloc(char *str, int re);
 
-int						ft_check_map(char *input);
+t_check					*ft_check_map(char *input);
 void					ft_init_check(t_check *check);
 int						ft_check_hash(char **str, int *i, t_check *check);
 void					check_room(char *str, int *check_type, int *rooms, int *err);
 void					check_bond(char *str, int *bonds, int *err);
-int						ft_return (char **str, int err);
+void					*ft_return (char **str, int err);
 
 
 #endif

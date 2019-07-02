@@ -6,13 +6,13 @@
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/30 23:13:51 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/06/30 23:17:31 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/01 15:18:15 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lem_in.h"
 
-int		ft_return (char **str, int err)
+void	*ft_return (char **str)
 {
 	int	i;
 
@@ -27,9 +27,7 @@ int		ft_return (char **str, int err)
 	str[i] = NULL;
 	free(str);
 	str = NULL;
-	if (err != 0)
-		return (1);
-	return (0);
+		return (NULL);
 }
 
 void	ft_init_check(t_check *check)

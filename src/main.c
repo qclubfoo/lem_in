@@ -6,7 +6,7 @@
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 14:39:17 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/06/30 23:10:40 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/01 15:12:28 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,15 @@ void	ft_exit(char *str)
 
 int 	main(void)
 {
-	char    *str;
+	char	*str;
+	t_check	*check;
+	t_map	*map;
 
 	str = ft_read();
-	if (ft_check_map(str))
-		ft_exit(str); // написать функцию для выхода с очисткой строки
+	check = ft_check_map;
+	check == NULL ? ft_exit(str) : 0;
+	map = ft_make_map(str, check);
+	map == NULL ? ft_exit(str) : 0;
 	write(1, "OK\n", 3);
 	// ft_make_map(&map, str);
 	return (0);
