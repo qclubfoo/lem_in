@@ -6,7 +6,7 @@
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 15:14:33 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/02 00:15:09 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/02 13:22:46 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void		ft_make_room(char *str, t_check *check, t_map *map)
 	if (i != 3)
 	{
 		check->check_type = 2;
-		return ;
+		return (ft_return(split, 0));
 	}
 	if (map->rooms == NULL)
 	{
@@ -62,6 +62,12 @@ void		ft_make_room(char *str, t_check *check, t_map *map)
 	tmp->x = ft_atoi(split[1]);
 	tmp->y = ft_atoi(split[2]);
 	tmp = NULL;
+	ft_return(split, 0);
+}
+
+void		ft_make_bonds(char *str, t_check *check, t_map *map)
+{
+
 }
 
 t_map		ft_make_map(char *input, t_check *check)
@@ -83,5 +89,7 @@ t_map		ft_make_map(char *input, t_check *check)
 			continue ;
 		if (check->check_type == 1)
 			ft_make_room(str[i], check, &map);
+		if (check->check_type == 2)
+			ft_make_bonds(str[i], check, &map);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 14:33:10 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/06/26 15:03:03 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/02 14:06:13 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_realloc(char *str, int re)
 	{
 		if (!(str = (char*)malloc(sizeof(char) * (re + 1))))
 			exit(0);
-		str[re + 1] = '\0';
+		str[re] = '\0';
 		return (str);
 	}
 	len = ft_strlen(str);

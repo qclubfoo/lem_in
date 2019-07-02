@@ -12,11 +12,12 @@
 
 #include "../inc/lem_in.h"
 
-t_check		*ft_check_map(char *input)
+int		ft_check_map(char *input)
 {
 	char	**str;
 	int		i;
 	t_check	check;
+
 
 	ft_init_check(&check);
 	i = 0;
@@ -37,8 +38,7 @@ t_check		*ft_check_map(char *input)
 	}
 	if (check.err != 0 || check.rooms == 0 || check.bonds == 0)
 		return (ft_return(str, 1));
-	ft_return (str, 0);
-	return (&check);
+	return (ft_return (str, 0));
 }
 
 int		ft_check_hash(char **str, int *i, t_check *check)
@@ -48,12 +48,16 @@ int		ft_check_hash(char **str, int *i, t_check *check)
 		check->start += 1;
 		if (check->start > 1)
 			check->err = 1;
+		if (str[*i + 1] != NULL && ft_strcmp(str[*i + 1], "##end"))
+			check->err = 1;
 		*i += 1;
 	}
 	else if (ft_strcmp(str[*i], "##end"))
 	{
 		check->end += 1;
 		if (check->end > 1)
+			check->err = 1;
+		if (str[*i + 1] != NULL && ft_strcmp(str[*i + 1], "##start"))
 			check->err = 1;
 		*i += 1;
 	}
