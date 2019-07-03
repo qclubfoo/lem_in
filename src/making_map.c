@@ -6,7 +6,7 @@
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 15:14:33 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/02 18:51:06 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/03 11:41:56 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,13 +91,21 @@ void		ft_make_bonds(char *str, int *check_type, t_map *map)
 	dst = NULL;
 	tmp = map->rooms;
 	split = ft_strsplit(str, '-');
-	while (src == NULL || dst == NULL)
+	while (src == NULL && dst == NULL)
 	{
 		if (ft_strcmp(tmp->name, split[0]))
 			dst = tmp;
 		if (ft_strcmp(tmp->name, split[1]))
 			src = tmp;
+		if (tmp == NULL)
+			break ;
 		tmp = tmp->next;
+	}
+	if (src == NULL || dst == NULL)
+	{
+		ft_return(split, 1);
+		*check_type = -1;
+		return ;
 	}
 	if (dst->bonds == NULL)
 	{
@@ -127,7 +135,6 @@ t_map		*ft_make_map(char *input)
 	int		check_type;
 	int		start;
 	int		end;
-	t_room	*tmp;
 
 	map = (t_map*)malloc(sizeof(t_map));
 	i = 0;
@@ -146,9 +153,14 @@ t_map		*ft_make_map(char *input)
 		// ft_check_rooms_repeat(map->rooms);
 		if (check_type == 2)
 			ft_make_bonds(str[i], &check_type, map);
+		if (check_type == -1)
+		{
+			ft_return(str, 0);
+			ft_free_map(map);
+			return (NULL);
+		}
 		i++;
 	}
-	
 	ft_return(str, 0);
 	return (map);
 }

@@ -6,7 +6,7 @@
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 14:25:20 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/02 18:08:45 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/03 11:30:38 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,7 @@ void					ft_make_room(char *str, int *check_type, t_map *map, int *start, int *e
 int						ft_hash(char **str, int *i, int *start, int *end);
 t_room					*add_first_room(void);
 t_room					*add_new_room(t_room *head);
+
+void					ft_free_map(t_map *map);
+
 #endif

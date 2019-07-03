@@ -78,7 +78,7 @@ void	check_room(char *str, int *check_type, int *rooms, int *err)
 	check = ft_strsplit(str, ' ');
 	while (check[i] != NULL)
 		i++;
-	i > 0 && check[0][0] == 'L' ? *err = 1 : 0;
+	i > 0 && check[0][0] == 'L'  ? *err = 1 : 0;
 	i == 3 ? ft_atoi_err(check[1], err) : 0;
 	i == 3 ? ft_atoi_err(check[2], err) : 0;
 	if (i != 3 || *err != 0)
