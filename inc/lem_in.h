@@ -6,7 +6,7 @@
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 14:25:20 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/03 11:30:38 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/03 16:26:53 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct			s_check
 	int					end;
 	int					rooms;
 	int					bonds;
+	int					comments;
 	int					check_type;
 }						t_check;
 
@@ -60,13 +61,15 @@ int						ft_strcmp(char *str, char *find);
 int						ft_atoi(char *str);
 char					*ft_read(void);
 char					*ft_realloc(char *str, int re);
+int						ft_strchr(char *str, char c);
 
-int						ft_check_map(char *input);
+t_check					*ft_check_map(char *input);
 void					ft_init_check(t_check *check);
 int						ft_check_hash(char **str, int *i, t_check *check);
-void					check_room(char *str, int *check_type, int *rooms, int *err);
-void					check_bond(char *str, int *bonds, int *err);
-int						ft_return (char **str, int err);
+void					check_room(char *str, t_check *check);
+void					check_bond(char *str, t_check *check);
+void					ft_return (char **str);
+int						ft_count_del(char *str, char del);
 
 t_bond					*add_first_bond(void);
 t_map					*ft_make_map(char *input);

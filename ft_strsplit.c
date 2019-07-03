@@ -6,7 +6,7 @@
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:17:15 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/06/28 15:41:32 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/03 16:24:03 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,6 @@ char		**ft_strsplit(char *str, char del)
 	int		j;
 	int		k;
 
-	if (str != NULL && str[0] == del)
-		return (NULL);
 	ft_count_words(str, del, &words);
 	if (!(str_new = (char**)malloc(sizeof(char*) * (words + 1))))
 		exit(0);

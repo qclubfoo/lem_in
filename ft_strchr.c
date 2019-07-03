@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bonds_adding.c                                     :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/02 17:47:27 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/02 18:08:28 by qclubfoo         ###   ########.fr       */
+/*   Created: 2019/07/03 13:11:51 by qclubfoo          #+#    #+#             */
+/*   Updated: 2019/07/03 13:17:10 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/lem_in.h"
+#include "./inc/lem_in.h"
 
-t_bond		*add_first_bond(void)
+int		ft_strchr(char *str, char c)
 {
-	t_bond	*first_bond;
+	int	i;
 
-	first_bond = (t_bond*)malloc(sizeof(t_bond));
-	first_bond->next = NULL;
-	return (first_bond);
+	i = 0;
+	while (str[i])
+	{
+		if (str[i++] == c)
+			return (1);
+	}
+	return (0);
 }
