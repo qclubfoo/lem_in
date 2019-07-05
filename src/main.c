@@ -6,7 +6,7 @@
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 14:39:17 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/03 17:01:34 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/05 15:35:01 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,61 +14,20 @@
 
 void	ft_exit(char *str)
 {
-	free(str);
-	str = NULL;
-	write(2, "Error\n", 6);
+	if (str != NULL)
+	{
+		free(str);
+		str = NULL;
+	}
+	write(2, "ERROR\n", 6);
 	exit(0);
 }
 
-// void	ft_free_map(t_map *map)
-// {
-// 	t_room	*tmp;
-// 	t_bond	*ttmp;
-
-// 	while (map->rooms != NULL)
-// 	{
-// 		tmp = map->rooms;
-// 		map->rooms = map->rooms->next;
-// 		free(tmp->name);
-// 		tmp->name = NULL;
-// 					printf("tut\n");
-// 		while (tmp->bonds != NULL)
-// 		{
-// 			ttmp = tmp->bonds;
-// 			tmp->bonds = tmp->bonds->next;
-// 			free(ttmp->bond);
-// 			ttmp->bond = NULL;
-// 		}
-// 		free(tmp->bonds->bond);
-// 		tmp->bonds->bond = NULL;
-// 		free(tmp->bonds);
-// 		tmp->bonds = NULL;
-// 		free(tmp);
-// 		tmp = NULL;
-	
-// 	}
-// 	free(map->rooms);
-// 	map->rooms = NULL;
-// 	free(map);
-// 	map = NULL;
-// }
-
-int 	main(void)
+void	ft_check_el(t_check *check, char *str)
 {
-	char	*str;
-	t_check	*check;
-	int		i;
-	int		count_del;
+	int	i;
+	int	count_del;
 
-	str = ft_read();
-	if (str == NULL)
-	{
-		write(2, "Error\n", 6);
-		return (0);
-	}
-	check = ft_check_map(str);
-	if (check == NULL)
-		ft_exit(str);
 	i = 0;
 	count_del = 0;
 	while(str[i])
@@ -82,25 +41,147 @@ int 	main(void)
 		check = NULL;
 		ft_exit(str);
 	}
-	// map = ft_make_map(str);
-	// map == NULL ? ft_exit(str) : 0;
-	write(1, "OK\n", 3);
-	// tmp = map->rooms;
-	// while (tmp != NULL)
-	// {
-	// 	printf("name = %s\nse = %d\nx = %d\ny = %d\nbonds are: ", tmp->name, tmp->se, tmp->x, tmp->y);
-	// 	while (tmp->bonds != NULL)
-	// 	{
-	// 		printf("%s ", tmp->bonds->bond->name);
-	// 		tmp->bonds = tmp->bonds->next;
-	// 	}
-	// 	printf("\n\n");
-	// 	tmp = tmp->next;
-	// }
-	// tmp = NULL;
-
-	// free(str);
-	// str = NULL;
-	// ft_free_map(map);
-	exit(0);
 }
+
+void	ft_free_map(t_map *map)
+{
+	t_room	*tmp_r;
+	t_bond	*tmp_b;
+
+	while (map->rooms != NULL)
+	{
+		tmp_r = map->rooms;
+		map->rooms = map->rooms->next;
+		free(tmp_r->name);
+		tmp_r->name = NULL;
+
+		while (tmp_r->bonds != NULL)
+		{
+			tmp_b = tmp_r->bonds;
+			tmp_r->bonds = tmp_r->bonds->next;
+			free(tmp_b);
+			tmp_b = NULL;
+		}
+		free(tmp_r);
+		tmp_r = NULL;
+	}
+	free(map);
+	map = NULL;
+}
+
+int		ft_check_rep_rooms(t_room *rooms)
+{
+	t_room	*tmp;
+	t_room	*ttmp;
+
+	tmp = rooms;
+	while (tmp != NULL)
+	{
+		ttmp = tmp->next;
+		if (ttmp != NULL)
+		{
+			while (ttmp != NULL)
+			{
+				if (ft_strcmp(tmp->name, ttmp->name))
+					return (1);
+				ttmp = ttmp->next;
+			}
+			ttmp = NULL;
+		}
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
+int		ft_check_rep_bonds(t_room *rooms)
+{
+	t_room	*tmp_r;
+	t_bond	*tmp_b;
+	t_bond	*tmp;
+
+	tmp_r = rooms;
+	while (tmp_r != NULL)
+	{
+		tmp_b = tmp_r->bonds;
+		while (tmp_b != NULL)
+		{
+			tmp = tmp_b->next;
+			if (tmp != NULL)
+			{
+				if (ft_strcmp(tmp->bond->name, tmp_b->bond->name))
+				{
+					tmp_r = NULL;
+					tmp_b = NULL;
+					tmp = NULL;
+					return (1);
+				}
+			}
+			tmp = NULL;
+			tmp_b = tmp_b->next;
+		}
+		tmp_b = NULL;
+		tmp_r = tmp_r->next;
+	}
+	tmp_r = NULL;
+	return (0);
+}
+
+int 	main(void)
+{
+	char	*str;
+	t_check	*check;
+	t_map	*map;
+
+	str = ft_read();
+	if (str == NULL)
+		ft_exit(str);
+	check = ft_check_map(str);
+	check == NULL ? ft_exit(str) : 0;
+	ft_check_el(check, str);
+	map = (t_map*)malloc(sizeof(t_map));
+	if (ft_make_map(str, map))
+	{
+		ft_free_map(map);
+		map = NULL;
+		free(check);
+		check = NULL;
+		ft_exit(str);
+	}
+	if (ft_check_rep_rooms(map->rooms))
+	{
+		ft_free_map(map);
+		map = NULL;
+		free(check);
+		check = NULL;
+		ft_exit(str);
+	}
+	if (ft_check_rep_bonds(map->rooms))
+	{
+		ft_free_map(map);
+		map = NULL;
+		free(check);
+		check = NULL;
+		ft_exit(str);
+	}
+	ft_printf(str);
+	ft_free_map(map);
+	map = NULL;
+	free(check);
+	check = NULL;
+	free(str);
+	return (0);
+}
+
+// печать комнат и их содержимого (если понадобится для проверки)
+	// printf("ants = %d\n", map->ants);
+	// while (map->rooms != NULL)
+	// {
+	// 	printf("room_name = %s\nse = %d\nx = %d\ny = %d\nbonds: ", map->rooms->name, map->rooms->se, map->rooms->x, map->rooms->y);
+	// 	while (map->rooms->bonds != NULL)
+	// 	{
+	// 		printf("%s ", map->rooms->bonds->bond->name);
+	// 		map->rooms->bonds = map->rooms->bonds->next;
+	// 	}
+	// 	printf("\n");
+	// 	map->rooms = map->rooms->next;
+	// }

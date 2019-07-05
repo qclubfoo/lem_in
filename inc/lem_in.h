@@ -6,7 +6,7 @@
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 14:25:20 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/03 16:26:53 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/05 15:19:41 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ char					**ft_strsplit(char *str, char del);
 int						ft_atoi_err(char *str, int *err);
 int						ft_strcmp(char *str, char *find);
 int						ft_atoi(char *str);
+int						ft_printf(const char * restrict format, ...);
 char					*ft_read(void);
 char					*ft_realloc(char *str, int re);
 int						ft_strchr(char *str, char c);
@@ -71,12 +72,13 @@ void					check_bond(char *str, t_check *check);
 void					ft_return (char **str);
 int						ft_count_del(char *str, char del);
 
-t_bond					*add_first_bond(void);
-t_map					*ft_make_map(char *input);
-void					ft_make_room(char *str, int *check_type, t_map *map, int *start, int *end);
-int						ft_hash(char **str, int *i, int *start, int *end);
+// t_bond					*add_first_bond(void);
+// t_map					*ft_make_map(char *input);
+// void					ft_make_room(char *str, int *check_type, t_map *map, int *start, int *end);
+// int						ft_hash(char **str, int *i, int *start, int *end);
 t_room					*add_first_room(void);
 t_room					*add_new_room(t_room *head);
+int						ft_make_map(char *input, t_map *map);
 
 void					ft_free_map(t_map *map);
 

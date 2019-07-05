@@ -52,7 +52,7 @@ t_check		*ft_check_map(char *input)
 		check = NULL;
 		return (NULL);
 	}
-	printf("err = %d\nstart = %d\nend = %d\nrooms = %d\nbonds = %d\ncomments = %d\ncheck_type = %d\n", check->err, check->start, check->end, check->rooms, check->bonds, check->comments, check->check_type);
+	// printf("err = %d\nstart = %d\nend = %d\nrooms = %d\nbonds = %d\ncomments = %d\ncheck_type = %d\n", check->err, check->start, check->end, check->rooms, check->bonds, check->comments, check->check_type);
 	return (check);
 }
 
@@ -94,7 +94,8 @@ void	check_room(char *str, t_check *check)
 	check_room = ft_strsplit(str, ' ');
 	while (check_room[i] != NULL)
 		i++;
-	i > 1 && (check_room[0][0] == 'L' || ft_strchr(check_room[0], '-') || ft_strchr(check_room[0], ' ')) ? check->err = 1 : 0;
+	i > 1 && (check_room[0][0] == 'L' || ft_strchr(check_room[0], '-')
+			|| ft_strchr(check_room[0], ' ')) ? check->err = 1 : 0;
 	i == 3 && check->err != 1 ? ft_atoi_err(check_room[1], &check->err) : 0;
 	i == 3 && check->err != 1 ? ft_atoi_err(check_room[2], &check->err) : 0;
 	i == 3 && ft_count_del(str, ' ') != 2 ? check->err = 1 : 0;
