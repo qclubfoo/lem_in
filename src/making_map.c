@@ -6,7 +6,7 @@
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 16:03:41 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/08 16:31:25 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/08 16:34:12 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@ int		ft_make_bond(char *str, t_map *map)
 	dst = NULL;
 	src = NULL;
 	ft_make_bond_one(str, map, &dst, &src);
-	printf("dst = %p\nsrc = %p\n", dst, src);
 	if (dst == NULL || src == NULL || src == dst)
 	{
 		dst = NULL;
