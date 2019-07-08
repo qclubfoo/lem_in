@@ -6,7 +6,7 @@
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 14:39:17 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/08 13:11:05 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/08 16:05:59 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,7 @@ int		main(void)
 		ft_free_and_exit(map, check, str);
 	if (ft_check_rep_bonds(map->rooms))
 		ft_free_and_exit(map, check, str);
-	ft_printf(str);
+	ft_printf("%s\n", str);
 	ft_free_map(map);
 	map = NULL;
 	free(check);

@@ -6,7 +6,7 @@
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 16:03:41 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/05 15:19:55 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/08 16:31:25 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,30 @@ int		ft_make_hash(char **str, int *i, int *se)
 	return (0);
 }
 
+void	ft_write_room(t_map *map, char **make_room, int *se)
+{
+	t_room	*tmp;
+
+	tmp = map->rooms;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	tmp->name = (char*)malloc(sizeof(char) * (ft_strlen(make_room[0]) + 1));
+	ft_strncpy(tmp->name, make_room[0], 0);
+	tmp->x = ft_atoi(make_room[1]);
+	tmp->y = ft_atoi(make_room[2]);
+	tmp->bonds = NULL;
+	if (*se)
+	{
+		tmp->se = *se;
+		*se = 0;
+	}
+	tmp = NULL;
+}
+
 void	ft_make_room(char *str, t_map *map, int *check_type, int *se)
 {
 	char	**make_room;
-	int		i;
-	t_room	*tmp;
-		
+	int		i;		
 
 	make_room = ft_strsplit(str, ' ');
 	i = 0;
@@ -51,51 +69,49 @@ void	ft_make_room(char *str, t_map *map, int *check_type, int *se)
 			map->rooms = add_first_room();
 		else
 			add_new_room(map->rooms);
-		tmp = map->rooms;
-		while (tmp->next != NULL)
-			tmp = tmp->next;
-		tmp->name = (char*)malloc(sizeof(char) * (ft_strlen(make_room[0]) + 1));
-		ft_strncpy(tmp->name, make_room[0], 0);
-		tmp->x = ft_atoi(make_room[1]);
-		tmp->y = ft_atoi(make_room[2]);
-		tmp->bonds = NULL;
-		if (*se)
-		{
-			tmp->se = *se;
-			*se = 0;
-		}
+		ft_write_room(map, make_room, se);
 	}
 	ft_return(make_room);
-	tmp = NULL;
+}
+
+void	ft_make_bond_one(char *str, t_map *map, t_room **dst, t_room **src)
+{
+	char **split;
+
+	split = ft_strsplit(str, '-');
+	*dst = map->rooms;
+	*src = map->rooms;
+	while (*dst != NULL)
+	{
+		if (ft_strcmp((*dst)->name, split[0]))
+			break ;
+		*dst = (*dst)->next;
+	}
+	while (src != NULL)
+	{
+		if (ft_strcmp((*src)->name, split[1]))
+			break ;
+		*src = (*src)->next;
+	}
+	free(split);
+	split = NULL;
 }
 
 int		ft_make_bond(char *str, t_map *map)
 {
-	char	**split;
 	t_room	*dst;
 	t_room	*src;
 	t_bond	*tmp;
 
-	split = ft_strsplit(str, '-');
-	dst = map->rooms;
-	src = map->rooms;
-	while (dst != NULL)
-	{
-		if (ft_strcmp(dst->name, split[0]))
-			break ;
-		dst = dst->next;
-	}
-	while (src != NULL)
-	{
-		if (ft_strcmp(src->name, split[1]))
-			break ;
-		src = src->next;
-	}
+	dst = NULL;
+	src = NULL;
+	ft_make_bond_one(str, map, &dst, &src);
+	printf("dst = %p\nsrc = %p\n", dst, src);
 	if (dst == NULL || src == NULL || src == dst)
 	{
 		dst = NULL;
 		src = NULL;
-		ft_return(split);
+		// ft_return(split);
 		// printf("return\n");
 		return (1);
 	}
@@ -123,7 +139,7 @@ int		ft_make_bond(char *str, t_map *map)
 	src = NULL;
 	dst = NULL;
 	tmp = NULL;
-	ft_return(split);
+	// ft_return(split);
 	return (0);
 }
 
