@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   string_map.c                                     :+:      :+:    :+:   */
+/*   checking_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/30 08:19:51 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/06/30 08:31:20 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/08 12:56:33 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,28 @@
 t_check		*ft_check_map(char *input)
 {
 	char	**str;
-	int		i;
 	t_check	*check;
 
-	// printf("err = %d\nstart = %d\nend = %d\nrooms = %d\nbonds = %d\ncheck_type = %d\n", check->err, check->start, check->end, check->rooms, check->bonds, check->check_type);
-	i = 0;
-	
 	str = ft_strsplit(input, '\n');
 	if (str == NULL)
 		return (NULL);
 	check = (t_check*)malloc(sizeof(t_check));
 	ft_init_check(check);
-	if (ft_atoi_err(str[i++], &check->err) <= 0 || check->err != 0)
-	{
-		ft_return(str);
-		free(check);
-		check = NULL;
-		return (NULL);
-	}
+	if (ft_atoi_err(str[0], &check->err) <= 0 || check->err != 0)
+		return (exit_checking(check, str));
+	ft_checking(check, str);
+	if (check->err != 0 || check->rooms == 0 || check->bonds == 0
+									|| check->start == 0 || check->end == 0)
+		return (exit_checking(check, str));
+	ft_return(str);
+	return (check);
+}
+
+void		ft_checking(t_check *check, char **str)
+{
+	int	i;
+
+	i = 1;
 	while (str[i] != NULL)
 	{
 		if (ft_check_hash(str, &i, check))
@@ -45,18 +49,9 @@ t_check		*ft_check_map(char *input)
 			break ;
 		i++;
 	}
-	ft_return(str);
-	if (check->err != 0 || check->rooms == 0 || check->bonds == 0 || check->start == 0 || check->end == 0)
-	{
-		free(check);
-		check = NULL;
-		return (NULL);
-	}
-	// printf("err = %d\nstart = %d\nend = %d\nrooms = %d\nbonds = %d\ncomments = %d\ncheck_type = %d\n", check->err, check->start, check->end, check->rooms, check->bonds, check->comments, check->check_type);
-	return (check);
 }
 
-int		ft_check_hash(char **str, int *i, t_check *check)
+int			ft_check_hash(char **str, int *i, t_check *check)
 {
 	if (ft_strcmp(str[*i], "##start") && check->check_type == 1)
 	{
@@ -78,17 +73,17 @@ int		ft_check_hash(char **str, int *i, t_check *check)
 	}
 	else if (str[*i][0] == '#')
 	{
-		check->comments +=1;
+		check->comments += 1;
 		*i += 1;
 		return (1);
 	}
 	return (0);
 }
 
-void	check_room(char *str, t_check *check)
+void		check_room(char *str, t_check *check)
 {
-	char **check_room;
-	int	i;
+	char	**check_room;
+	int		i;
 
 	i = 0;
 	check_room = ft_strsplit(str, ' ');
@@ -106,10 +101,10 @@ void	check_room(char *str, t_check *check)
 	ft_return(check_room);
 }
 
-void	check_bond(char *str, t_check *check)
+void		check_bond(char *str, t_check *check)
 {
-	char **check_bond;
-	int	i;
+	char	**check_bond;
+	int		i;
 
 	i = 0;
 	check_bond = ft_strsplit(str, '-');
