@@ -11,7 +11,7 @@ all: $(NAME)
 $(NAME):
 
 	@make -C libft/ fclean && make -C libft/
-	gcc -o $(NAME) $(FILES) $(FLAGS) ./libft/libft.a ./inc/libftprintf.a -I ./inc/
+	gcc -o $(NAME) $(FILES) $(FLAGS) ./libft/libft.a -I ./inc/
 
 clean:
 	@make -C libft/ clean
