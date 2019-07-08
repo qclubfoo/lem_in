@@ -6,13 +6,13 @@
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/30 23:13:51 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/08 12:45:12 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/08 19:23:03 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lem_in.h"
 
-void		*exit_checking(t_check *check, char **str)
+void	*exit_checking(t_check *check, char **str)
 {
 	ft_return(str);
 	free(check);
