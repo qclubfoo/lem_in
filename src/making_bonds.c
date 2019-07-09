@@ -6,7 +6,7 @@
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 19:09:31 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/08 19:21:40 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/09 16:24:06 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	ft_find_bond(char *str, t_map *map, t_room **dst, t_room **src)
 			break ;
 		*src = (*src)->next;
 	}
-	free(split);
+	ft_return(split);
 	split = NULL;
 }
 

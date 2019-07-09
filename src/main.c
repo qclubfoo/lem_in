@@ -6,7 +6,7 @@
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 14:39:17 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/08 19:23:39 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/09 16:39:22 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int		main(void)
 	free(check);
 	check = NULL;
 	free(str);
+	str = NULL;
 	return (0);
 }
 
