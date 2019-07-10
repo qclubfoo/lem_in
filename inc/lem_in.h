@@ -6,7 +6,7 @@
 /*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 14:25:20 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/10 18:54:54 by sbrella          ###   ########.fr       */
+/*   Updated: 2019/07/10 19:13:20 by sbrella          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct		s_room
 typedef struct		s_map
 {
 	int				ants;
+	char			*file;
 	struct s_room	*rooms;
 }					t_map;
 
@@ -89,5 +90,6 @@ int					ft_check_rep_rooms(t_room *rooms);
 void				ft_exit(char *str);
 void				ft_free_map(t_map *map);
 void				ft_free_and_exit(t_map *map, t_check *check, char *str);
+t_map				*validate(void);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   making_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 16:03:41 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/10 17:56:14 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/10 19:18:29 by sbrella          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ char	**ft_init_making_map(char *input, t_map *map, int *i, int *se)
 	str = ft_strsplit(input, '\n');
 	map->ants = ft_atoi(str[0]);
 	map->rooms = NULL;
+	map->file = NULL;
 	*se = 0;
 	return (str);
 }
