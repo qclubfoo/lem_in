@@ -4,7 +4,7 @@ FLAGS = -Wall -Wextra -Werror -g
 
 INCLUDES = ./libft/
 
-FILES = ft_atoi_err.c ft_atoi.c ft_bzero.c ft_strchr.c ft_strcmp.c ft_strlen.c ft_strncpy.c ft_strsplit.c ./src/*.c
+FILES = ./src/*.c
 
 all: $(NAME)
 

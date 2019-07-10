@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atoi_err.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 16:32:41 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/10 18:45:09 by sbrella          ###   ########.fr       */
+/*   Updated: 2019/07/10 18:42:26 by sbrella          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_atoi(const char *str)
+int		ft_atoi_err(char *str, int *err)
 {
 	unsigned long int	res;
 	int					sign;
@@ -28,9 +28,14 @@ int		ft_atoi(const char *str)
 	{
 		if ((res > MAX_I) || ((res == MAX_I && (*str - '0') > 7) && sign == 1)
 		|| (res > MAX_I) || ((res == MAX_I && (*str - '0') > 8) && sign == -1))
+		{
+			*err = 1;
 			return (-1);
+		}
 		res = 10 * res + (int)(*str - '0');
 		str++;
 	}
+	if ((*str > 32 && *str < 48) || (*str > 57 && *str < 127))
+		*err = 1;
 	return ((int)(sign * res));
 }

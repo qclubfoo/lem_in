@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bzero.c                                            :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbrella <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/28 15:42:54 by sbrella           #+#    #+#             */
-/*   Updated: 2018/12/06 16:15:05 by sbrella          ###   ########.fr       */
+/*   Created: 2019/06/13 17:15:11 by qclubfoo          #+#    #+#             */
+/*   Updated: 2019/07/10 18:45:04 by sbrella          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+void	ft_bzero(char *str, int len)
 {
-	char *a;
+	int	i;
 
-	a = (char*)s;
-	while (n > 0)
-	{
-		a[n - 1] = '\0';
-		n--;
-	}
+	if (len < 0)
+		return ;
+	i = 0;
+	while (i <= len)
+		str[i++] = '\0';
 }
