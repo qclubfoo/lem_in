@@ -6,7 +6,7 @@
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 14:25:20 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/08 19:26:32 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/10 17:52:16 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct		s_check
 	int				bonds;
 	int				comments;
 	int				check_type;
+	int				flag;
 }					t_check;
 
 typedef struct		s_bond

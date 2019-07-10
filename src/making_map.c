@@ -6,7 +6,7 @@
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 16:03:41 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/08 19:21:14 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/10 17:56:14 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,13 @@ int		ft_make_hash(char **str, int *i, int *se)
 	{
 		*se = 1;
 		*i += 1;
+		return (1);
 	}
 	else if (ft_strcmp(str[*i], "##end"))
 	{
 		*se = 2;
 		*i += 1;
+		return (1);
 	}
 	else if (str[*i][0] == '#')
 	{
