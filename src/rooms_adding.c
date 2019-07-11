@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rooms_adding.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 09:42:16 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/02 17:28:19 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/11 19:10:52 by sbrella          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ t_room		*add_new_room(t_room *head)
 		head = head->next;
 	head->next = (t_room*)malloc(sizeof(t_room));
 	head->next->se = 0;
+	head->next->label = 0;
 	head->next->bonds = NULL;
 	head->next->next = NULL;
 	return (head->next);

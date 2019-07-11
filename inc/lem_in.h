@@ -6,7 +6,7 @@
 /*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 14:25:20 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/10 19:13:20 by sbrella          ###   ########.fr       */
+/*   Updated: 2019/07/11 19:35:35 by sbrella          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct		s_room
 	struct s_room	*next;
 	int				x;
 	int				y;
+	int				label;
 }					t_room;
 
 typedef struct		s_map
@@ -52,6 +53,12 @@ typedef struct		s_map
 	char			*file;
 	struct s_room	*rooms;
 }					t_map;
+
+typedef struct		s_queue
+{
+	t_room			*room;
+	struct s_queue	*next;
+}					t_queue;
 
 char				*ft_read(void);
 char				*ft_realloc(char *str, int re);
