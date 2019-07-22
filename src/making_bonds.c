@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   making_bonds.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ilya <ilya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 19:09:31 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/10 16:10:40 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/22 14:58:16 by ilya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int		ft_make_bond(char *str, t_map *map)
 {
 	t_room	*dst;
 	t_room	*src;
-	t_bond	*tmp;
 
 	dst = NULL;
 	src = NULL;
@@ -33,7 +32,6 @@ int		ft_make_bond(char *str, t_map *map)
 		ft_add_bond(dst, src);
 	src = NULL;
 	dst = NULL;
-	tmp = NULL;
 	return (0);
 }
 

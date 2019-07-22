@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ilya <ilya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 14:25:20 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/11 19:35:35 by sbrella          ###   ########.fr       */
+/*   Updated: 2019/07/22 15:00:04 by ilya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,6 @@ void				ft_exit(char *str);
 void				ft_free_map(t_map *map);
 void				ft_free_and_exit(t_map *map, t_check *check, char *str);
 t_map				*validate(void);
+int					connected(t_map *map);
 
 #endif
