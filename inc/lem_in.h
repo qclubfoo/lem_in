@@ -6,7 +6,7 @@
 /*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 14:25:20 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/27 17:51:20 by sbrella          ###   ########.fr       */
+/*   Updated: 2019/07/27 18:01:26 by sbrella          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct		s_queue
 
 typedef struct		s_ant
 {
-	t_room			*path;
+	t_queue			*path;
 	t_room			*position;
 	int				finish;
 }					t_ant;

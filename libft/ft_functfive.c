@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_functfive.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilya <ilya@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 16:23:06 by sbrella           #+#    #+#             */
-/*   Updated: 2019/04/28 21:17:52 by ilya             ###   ########.fr       */
+/*   Updated: 2019/07/27 18:03:41 by sbrella          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ long long int a)
 	}
 }
 
-int			manage_ptr_null(size_t *total, t_specs *sp)
+int				manage_ptr_null(size_t *total, t_specs *sp)
 {
 	int i;
 

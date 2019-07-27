@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_long.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilya <ilya@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 19:21:46 by sbrella           #+#    #+#             */
-/*   Updated: 2019/04/28 21:46:27 by ilya             ###   ########.fr       */
+/*   Updated: 2019/07/27 18:04:19 by sbrella          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 static long long int	long_abs(long long int i)
 {
@@ -16,8 +18,6 @@ static long long int	long_abs(long long int i)
 		return (-i);
 	return (i);
 }
-
-#include "libft.h"
 
 static char				def_sym(char sign, char a)
 {

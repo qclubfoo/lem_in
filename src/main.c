@@ -6,7 +6,7 @@
 /*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 19:10:34 by sbrella           #+#    #+#             */
-/*   Updated: 2019/07/27 17:58:35 by sbrella          ###   ########.fr       */
+/*   Updated: 2019/07/27 21:03:38 by sbrella          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,34 +47,35 @@ void	set_actual_dist(t_map *map)
 	}
 }
 
-// t_queue	*get_minimal_path(t_lemin *lemin)
-// {
-// 	t_room		*path;
-// 	t_room		*next;
-// 	t_bond		*bond;
-// 	t_queue		*min;
-// 	t_queue		*last;
+t_queue	*get_minimal_path(t_lemin *lemin)
+{
+	t_room		*path;
+	t_room		*next;
+	t_bond		*bond;
+	t_queue		*min;
+	t_queue		*last;
+	int			distance;
 
-// 	min = NULL;
-// 	last = NULL;
-// 	path = lemin->end;
-// 	while (path->se != 1)
-// 	{
-// 		bond = path->bonds;
-// 		while (bond)
-// 		{
-// 			if (bond->bond->distance < path->distance)
-// 			{
-// 				next = bond->bond;
-// 				add_to_queue(&min, &last, next);
-// 				break ;
-// 			}
-// 			bond = bond->next;
-// 		}
-// 		path = next;
-// 	}
-// 	return (min);
-// }
+	min = NULL;
+	last = NULL;
+	path = lemin->begin;
+	while (path->distance != 0)
+	{
+		bond = path->bonds;
+		while (bond)
+		{
+			if (bond->bond->distance < distance)
+			{
+				next = bond->bond;
+				add_to_queue(&min, &last, next);
+				break ;
+			}
+			bond = bond->next;
+		}
+		path = next;
+	}
+	return (min);
+}
 
 int		dist_map(t_lemin *lemin)
 {
@@ -96,11 +97,27 @@ void	print_map(t_map *map)
 	}
 }
 
+void	redo_hefts(t_queue *path, t_lemin *lemin)
+{
+	path = NULL;
+	lemin = NULL;
+	// return (0);
+}
+
 void	solve(t_map *map, t_lemin *lemin)
 {
+	int			ants;
+
+	ants = 0;
 	delete_unconnected(map);
 	dist_map(lemin);
 	print_map(map);
+	while (ants < map->ants)
+	{
+		(lemin->ants)[ants].path = get_minimal_path(lemin);
+		redo_hefts(((lemin->ants)[ants]).path, lemin);
+		ants++;
+	}
 }
 
 int		 main(void)
