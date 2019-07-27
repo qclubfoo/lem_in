@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilya <ilya@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 14:25:20 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/23 13:33:57 by ilya             ###   ########.fr       */
+/*   Updated: 2019/07/27 17:51:20 by sbrella          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,19 @@ typedef struct		s_queue
 	struct s_queue	*next;
 }					t_queue;
 
+typedef struct		s_ant
+{
+	t_room			*path;
+	t_room			*position;
+	int				finish;
+}					t_ant;
+
 typedef struct		s_lemin
 {
 	t_room			*begin;
 	t_room			*end;
 	t_map			*map;
-	t_queue			**paths;
+	t_ant			*ants;
 }					t_lemin;
 
 char				*ft_read(void);
@@ -113,5 +120,6 @@ t_room				*find_entry(t_map *map);
 t_room				*find_exit(t_map *map);
 int					set_distance(t_map *map);
 void				add_to_queue(t_queue **queue, t_queue **last, t_room *room);
+int					delete_unconnected(t_map *map);
 
 #endif
