@@ -6,7 +6,7 @@
 /*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 14:25:20 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/27 18:01:26 by sbrella          ###   ########.fr       */
+/*   Updated: 2019/07/28 17:49:25 by sbrella          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,5 +121,8 @@ t_room				*find_exit(t_map *map);
 int					set_distance(t_map *map);
 void				add_to_queue(t_queue **queue, t_queue **last, t_room *room);
 int					delete_unconnected(t_map *map);
+void				add_neighbors_to_queue(t_room *room, t_queue **queue, t_queue **last);
+void				define_dist(t_room *room);
+void				delete_first_elem(t_queue **queue);
 
 #endif
