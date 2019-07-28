@@ -3,21 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   visualizer.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilya <ilya@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 18:37:50 by ilya              #+#    #+#             */
-/*   Updated: 2019/07/23 13:46:16 by ilya             ###   ########.fr       */
+/*   Updated: 2019/07/28 17:50:34 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include <stdbool.h>
 # include </usr/include/SDL2/SDL.h>
 # include <math.h>
+# include <stdlib.h>
 # define WINX 1024
 # define WINY 1024
 # define SPHERE 1
 # define LIGHT 0
 # define FOV 90 * ((2 * 3.1415) / 360)
+# define BUFF_SIZE 128;
+
+typedef struct			s_rooms
+{
+	char				*name;
+	int					x;
+	int					y;
+	struct s_room		*next;
+}						t_room;
+
+typedef struct			s_bonds
+{
+	int					x_1;
+	int					y_1;
+	int					x_2;
+	int					y_2;
+	struct s_bonds		*next;
+}						t_bonds;
+
+typedef struct			s_step
+{
+	int					ant_num;
+	int					x;
+	int					y;
+	struct s_step		*next;
+}						t_step;
+
+typedef struct			s_steps
+{
+	struct s_step		*step;
+	struct s_steps		*next;
+}						t_steps;
 
 typedef struct			s_sdl
 {
@@ -67,6 +100,8 @@ typedef struct			s_objects
 	t_object			*light;
 	t_object			*bodies;
 }						t_objects;
+
+char					*ft_read(void);
 
 // t_vector				cross_product(t_vector one, t_vector two);
 // double					scalar_product(t_vector one, t_vector two);
