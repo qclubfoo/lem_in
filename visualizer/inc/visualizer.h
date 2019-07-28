@@ -6,7 +6,7 @@
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 18:37:50 by ilya              #+#    #+#             */
-/*   Updated: 2019/07/28 17:50:34 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/28 18:36:50 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct			s_rooms
 	int					x;
 	int					y;
 	struct s_room		*next;
-}						t_room;
+}						t_rooms;
 
 typedef struct			s_bonds
 {
