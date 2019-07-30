@@ -6,7 +6,7 @@
 /*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 19:10:34 by sbrella           #+#    #+#             */
-/*   Updated: 2019/07/30 19:31:17 by sbrella          ###   ########.fr       */
+/*   Updated: 2019/07/30 21:23:00 by sbrella          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,7 +224,7 @@ void	solve(t_map *map, t_lemin *lemin)
 	while (ants < map->ants)
 	{
 		(lemin->ants)[ants].path = get_minimal_path(lemin);
-		print_path((lemin->ants)[ants].path, ants);
+		// print_path((lemin->ants)[ants].path, ants);
 		redo_hefts(((lemin->ants)[ants]).path, lemin);
 		// print_map(map);
 		ants++;
@@ -242,33 +242,114 @@ void	init_ants(t_lemin *lemin)
 	{
 		(lemin->ants)[num].position = lemin->begin;
 		(lemin->ants)[num].finish = 0;
-		ants++;
+		num++;
 	}
 }
 
-// void	print_moves(t_lemin *lemin)
-// {
-// 	int			ants;
-// 	int			all;
+t_room	*get_next(t_queue *path, t_room *pos)
+{
+	while (path->room != pos)
+		path = path->next;
+	return (path->next->room);
+}
 
-// 	init_ants(lemin);
-// 	while (all != lemin->map->ants)
-// 	{
-// 		ants = 0;
-// 		while (ants < lemin->map->ants)
-// 		{
-// 			if (lemin->ants[ants].finish == 1)
-// 				continue;
-// 			if (lemin->ants[ants].position == lemin->begin && lemin->ants[ants].path->room->ant == 0)
-// 			{
-// 				lemin->ants[ants].position = lemin->ants[ants].path->room;
-// 				lemin->ants[ants].path->room = 1;
-// 			}
-			
-// 		}
-// 		ft_printf("\n");
-// 	}
-// }
+void	print_moves(t_lemin *lemin)
+{
+	int			ants;
+	int			all;
+	t_room		*next;
+	static int	i = 0;
+
+	init_ants(lemin);
+	all = 0;
+	while (all != lemin->map->ants)
+	{
+		ants = -1;
+		while (++ants < lemin->map->ants)
+		{
+			if (lemin->ants[ants].finish == 1)
+				continue;
+			if (lemin->ants[ants].position == lemin->begin)
+			{
+				if (lemin->ants[ants].path->room->ant == 0)
+				{
+					lemin->ants[ants].position = lemin->ants[ants].path->room;
+					if (lemin->ants[ants].path->room->se != 2)
+						lemin->ants[ants].path->room->ant = 1;
+					else
+					{
+						all++;
+						lemin->ants[ants].finish = 1;
+					}
+					ft_printf("%d %d-%s ", i, ants + 1, lemin->ants[ants].position->name);
+				}
+			}
+			else
+			{
+				next = get_next(lemin->ants[ants].path, lemin->ants[ants].position);
+				if (next->ant == 0)
+				{
+					if (next->se != 2)
+						next->ant = 1;
+					else
+					{
+						all++;
+						lemin->ants[ants].finish = 1;
+					}
+					lemin->ants[ants].position->ant = 0;
+					lemin->ants[ants].position = next;
+					ft_printf("%d %d-%s ", i, ants + 1, lemin->ants[ants].position->name);
+				}
+			}
+		}
+		i++;
+		ft_printf("\n");
+	}
+}
+
+void	free_path(t_queue **queue)
+{
+	int			count;
+
+	count = get_weight(*queue);
+	while (count-- > 0)
+		delete_first_elem(queue);
+}
+
+void	free_bonds(t_bond *bonds)
+{
+	t_bond		*next;
+
+	while (bonds != NULL)
+	{
+		next = bonds->next;
+		free(bonds);
+		bonds = next;
+	}
+}
+
+void	free_everything(t_lemin *lemin)
+{
+	int			ants;
+	t_room		*curr;
+	t_room		*next;
+
+	ants = -1;
+	while (++ants < lemin->map->ants)
+		free_path(&lemin->ants[ants].path);
+	free(lemin->ants);
+	curr = lemin->map->rooms;
+	while (curr != NULL)
+	{
+		next = curr->next;
+		free(curr->name);
+		free_bonds(curr->bonds);
+		free(curr);
+		curr = next;
+	}
+	free(lemin->map->file);
+	free(lemin->map);
+}
 
 int		 main(void)
 {
@@ -288,7 +369,7 @@ int		 main(void)
 		exit (0);
 	}
 	solve(map, &lemin);
-	// print_moves(&lemin);
-	free(map->file);
+	print_moves(&lemin);
+	free_everything(&lemin);
 	return (0);
 }
