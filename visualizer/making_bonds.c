@@ -6,13 +6,13 @@
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 11:54:22 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/30 15:39:50 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/30 19:24:23 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./inc/visualizer.h"
 
-void	ft_make_bond(char *str, int *check_type, t_bonds *bonds, t_rooms *rooms)
+void	ft_make_bond(char *str, int *check_type, t_bonds **bonds, t_rooms *rooms)
 {
 	char	**make_bonds;
 	int		i;
@@ -25,11 +25,11 @@ void	ft_make_bond(char *str, int *check_type, t_bonds *bonds, t_rooms *rooms)
 		*check_type = 3;
 	else
 	{
-		if (bonds == NULL)
-			bonds = add_first_bond();
+		if (*bonds == NULL)
+			*bonds = add_first_bond();
 		else
-			add_new_bond(bonds);
-		write_new_bond(bonds, rooms, make_bonds);
+			add_new_bond(*bonds);
+		write_new_bond(*bonds, rooms, make_bonds);
 	}
 	ft_return(make_bonds);
 }
@@ -55,8 +55,7 @@ void	add_new_bond(t_bonds *bonds)
 	tmp = bonds;
 	while (tmp->next != NULL)
 		tmp = tmp->next;
-	if (!(tmp->next = (t_bonds*)malloc(sizeof(t_bonds))))
-		return (NULL);
+	tmp->next = (t_bonds*)malloc(sizeof(t_bonds));
 	tmp->next->x_1 = -1;
 	tmp->next->y_1 = -1;
 	tmp->next->x_2 = -1;
@@ -68,23 +67,27 @@ void	write_new_bond(t_bonds *bonds, t_rooms *rooms, char **str)
 {
 	int		flag;
 	t_rooms	*tmp;
+	t_bonds	*tmp_b;
 
 	flag = 0;
 	tmp = rooms;
-	while (rooms != NULL && flag != 2)
+	tmp_b = bonds;
+	while (tmp_b->next != NULL)
+		tmp_b = tmp_b->next;
+	while (tmp != NULL && flag != 2)
 	{
 		if (ft_strcmp(tmp->name, str[0]))
 		{
-			bonds->x_1 = tmp->x;
-			bonds->y_1 = tmp->y;
+			tmp_b->x_1 = tmp->x;
+			tmp_b->y_1 = tmp->y;
 			flag++;
 		}
 		else if (ft_strcmp(tmp->name, str[1]))
 		{
-			bonds->x_2 = tmp->x;
-			bonds->y_2 = tmp->y;
+			tmp_b->x_2 = tmp->x;
+			tmp_b->y_2 = tmp->y;
 			flag++;
 		}
-		rooms = tmp->next;
+		tmp = tmp->next;
 	}
 }

@@ -6,35 +6,42 @@
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 13:01:08 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/30 15:30:48 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/30 19:30:41 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./inc/visualizer.h"
 
-void	ft_make_step(char *str, t_steps *steps, t_rooms *rooms)
+void	ft_make_step(char *str, t_steps **steps, t_rooms *rooms)
 {
 	char	**make_step;
 	t_steps	*tmp;
-	t_step	*new;
+	t_step	*tmp_ss;
 	int		i;
 
 	i = 0;
 	make_step = ft_strsplit(str, ' ');
 	ft_remove_l(make_step);
+	tmp = *steps;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
 	while (make_step[i])
 	{
-		tmp = steps;
-		while (tmp->step != NULL)
-			tmp = tmp->next;
-		tmp->step = (t_step*)malloc(sizeof(t_step));
-		new = tmp->step;
-		new->ant_num = -1;
-		new->x = -1;
-		new->y = -1;
-		new->next = NULL;
-		ft_find_step(new, rooms, make_step[i]);
-		tmp = NULL;
+		if (tmp->step == NULL)
+			tmp->step = add_first_separate_step();
+		else
+			add_new_separate_step(&(tmp->step));
+		ft_find_step(&tmp->step, rooms, make_step[i]);
+		// if (tmp->step == NULL)
+		// tmp->step = (t_step*)malloc(sizeof(t_step));
+		// new = tmp->step;
+		// new->ant_num = -1;
+		// new->x = -1;
+		// new->y = -1;
+		// new->next = NULL;
+		// puts("tut");
+		// ft_find_step(new, rooms, make_step[i]);
+		// tmp = NULL;
 		i++;
 	}
 	ft_return(make_step);
@@ -64,19 +71,24 @@ void	ft_remove_l(char **make_step)
 	}
 }
 
-void	ft_find_step(t_step *step, t_rooms *rooms, char *str)
+void	ft_find_step(t_step **step, t_rooms *rooms, char *str)
 {
 	char	**split;
 	t_rooms	*tmp;
+	t_step	*tmp_s;
 
 	split = ft_strsplit(str, '-');
-	step->ant_num = ft_atoi(split[0]);
-	while (rooms)
+	tmp_s = *step;
+	while (tmp_s->next != NULL)
+		tmp_s = tmp_s->next;
+	tmp_s->ant_num = ft_atoi(split[0]);
+	tmp = rooms;
+	while (tmp)
 	{
 		if (ft_strcmp(tmp->name, split[1]))
 		{
-			step->x = tmp->x;
-			step->y = tmp->y;
+			tmp_s->x = tmp->x;
+			tmp_s->y = tmp->y;
 			break ;
 		}
 		tmp = tmp->next;
@@ -104,4 +116,30 @@ void	add_new_steps(t_steps *steps)
 	tmp->next = (t_steps*)malloc(sizeof(t_steps));
 	tmp->next->step = NULL;
 	tmp->next->next = NULL;
+}
+
+t_step	*add_first_separate_step(void)
+{
+	t_step	*new;
+	new = (t_step*)malloc(sizeof(t_step));
+	new->ant_num = -1;
+	new->x = -1;
+	new->y = -1;
+	new->next = NULL;
+	return (new);
+}
+
+void	add_new_separate_step(t_step **step)
+{
+	t_step	*tmp;
+
+	tmp = *step;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	tmp->next = (t_step*)malloc(sizeof(t_step));
+	tmp = tmp->next;
+	tmp->ant_num = -1;
+	tmp->next = NULL;
+	tmp->x = -1;
+	tmp->y = -1;
 }

@@ -6,7 +6,7 @@
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 18:37:50 by ilya              #+#    #+#             */
-/*   Updated: 2019/07/30 16:43:47 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/30 20:31:25 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct			s_rooms
 	char				*name;
 	int					x;
 	int					y;
-	struct s_room		*next;
+	struct s_rooms		*next;
 }						t_rooms;
 
 typedef struct			s_bonds
@@ -111,29 +111,36 @@ typedef struct			s_objects
 }						t_objects;
 
 
-void					adding_data(t_map *map);
+t_map					*adding_data(void);
 char					*ft_read(void);
-void					ft_split_input(char *input, char **str, int *ants);
+char					**ft_split_input(char *input, t_map *map);
 
-void					ft_make_map(t_rooms *rooms, t_bonds *bonds, t_steps *steps, char **str);
-int						ft_make_hash(char **str, int *i);
+void					ft_make_map(t_rooms **rooms, t_bonds **bonds, t_steps **steps, char **str);
+int						ft_make_hash(char **str, int i);
 void					ft_return(char **str);
 
-void					ft_make_room(char *str, int *check_type, t_rooms *rooms);
+void					ft_make_room(char *str, int *check_type, t_rooms **rooms);
 t_rooms					*add_first_room(void);
 void					add_new_room(t_rooms *rooms);
 void					ft_write_room(t_rooms *rooms, char **make_room);
 
-void					ft_make_bond(char *str, int *check_type, t_bonds *bonds, t_rooms *rooms);
+void					ft_make_bond(char *str, int *check_type, t_bonds **bonds, t_rooms *rooms);
 t_bonds					*add_first_bond(void);
 void					add_new_bond(t_bonds *bonds);
 void					write_new_bond(t_bonds *bonds, t_rooms *rooms, char **str);
 
-void					ft_make_step(char *str, t_steps *steps, t_rooms *rooms);
+void					ft_make_step(char *str, t_steps **steps, t_rooms *rooms);
 void					ft_remove_l(char **make_step);
-void					ft_find_step(t_step *step, t_rooms *rooms, char *str);
+void					ft_find_step(t_step **step, t_rooms *rooms, char *str);
 t_steps					*add_first_steps(void);
 void					add_new_steps(t_steps *steps);
+t_step					*add_first_separate_step(void);
+void					add_new_separate_step(t_step **step);
+
+void					ft_free_map(t_map *map);
+void					ft_free_rooms(t_rooms *rooms);
+void					ft_free_bonds(t_bonds *bonds);
+void					ft_free_steps(t_steps *steps);
 // t_vector				cross_product(t_vector one, t_vector two);
 // double					scalar_product(t_vector one, t_vector two);
 // void					rotate_horizontal(t_camera *camera, double angle);

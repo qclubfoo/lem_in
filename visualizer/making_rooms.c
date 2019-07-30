@@ -6,13 +6,13 @@
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 11:24:57 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/30 15:38:33 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/30 18:17:54 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./inc/visualizer.h"
 
-void	ft_make_room(char *str, int *check_type, t_rooms *rooms)
+void	ft_make_room(char *str, int *check_type, t_rooms **rooms)
 {
 	char	**make_room;
 	int		i;
@@ -25,11 +25,11 @@ void	ft_make_room(char *str, int *check_type, t_rooms *rooms)
 		*check_type = 2;
 	else
 	{
-		if (rooms == NULL)
-			rooms = add_first_room();
+		if (*rooms == NULL)
+			*rooms = add_first_room();
 		else
-			add_new_room(rooms);
-		ft_write_room(rooms, make_room);
+			add_new_room(*rooms);
+		ft_write_room(*rooms, make_room);
 	}
 	ft_return(make_room);
 }
