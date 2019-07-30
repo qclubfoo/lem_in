@@ -6,7 +6,7 @@
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/28 17:54:09 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/30 15:42:35 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/30 16:44:14 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	adding_data(t_map *map)
 	map->rooms = NULL;
 	map->bonds = NULL;
 	map->steps = NULL;
-	input = read();
+	input = ft_read();
 	ft_split_input(input, str, &(map->ants));
 	ft_make_map(map->rooms, map->bonds, map->steps, str);
 	ft_return(str);

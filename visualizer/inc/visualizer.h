@@ -6,7 +6,7 @@
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 18:37:50 by ilya              #+#    #+#             */
-/*   Updated: 2019/07/30 15:45:21 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/30 16:43:47 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ t_bonds					*add_first_bond(void);
 void					add_new_bond(t_bonds *bonds);
 void					write_new_bond(t_bonds *bonds, t_rooms *rooms, char **str);
 
-void					ft_make_step(char *str, t_steps *steps, t_rooms *rooms)
+void					ft_make_step(char *str, t_steps *steps, t_rooms *rooms);
 void					ft_remove_l(char **make_step);
 void					ft_find_step(t_step *step, t_rooms *rooms, char *str);
 t_steps					*add_first_steps(void);
