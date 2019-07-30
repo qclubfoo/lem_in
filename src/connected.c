@@ -6,7 +6,7 @@
 /*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/17 13:01:35 by ilya              #+#    #+#             */
-/*   Updated: 2019/07/27 17:38:00 by sbrella          ###   ########.fr       */
+/*   Updated: 2019/07/30 19:21:33 by sbrella          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,36 @@ void	add_to_queue(t_queue **queue, t_queue **last, t_room *room)
 	}
 	(*last)->room = room;
 	(*last)->next = NULL;
+}
+
+void	add_to_queue_begin(t_queue **queue, t_queue **last, t_room *room)
+{
+	if (*queue == NULL)
+	{
+		*queue = (t_queue*)malloc(sizeof(t_queue));
+		*last = *queue;
+	}
+	else
+	{
+		(*last)->next = (t_queue*)malloc(sizeof(t_queue));
+		(*last) = (*last)->next;
+	}
+	(*last)->room = room;
+	(*last)->next = NULL;
+}
+
+void	decisive_add_neighbors(t_room *room, t_queue **queue, t_queue **last)
+{
+	t_bond		*list;
+
+	list = room->bonds;
+	if (room->label != 1)
+		while (list != NULL)
+		{
+			if (list->bond->label != 1)
+				add_to_queue(queue, last, list->bond);
+			list = list->next;
+		}
 }
 
 void	add_neighbors_to_queue(t_room *room, t_queue **queue, t_queue **last)
@@ -87,7 +117,6 @@ int		connected(t_map *map)
 	entry = find_entry(map);
 	add_neighbors_to_queue(entry, &queue, &last);
 	entry->label = 1;
-	entry->actual_dist = -1;
 	while (queue)
 	{
 		if (queue->room->se == 2)

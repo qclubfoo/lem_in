@@ -6,7 +6,7 @@
 /*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 19:10:34 by sbrella           #+#    #+#             */
-/*   Updated: 2019/07/28 18:27:28 by sbrella          ###   ########.fr       */
+/*   Updated: 2019/07/30 19:31:17 by sbrella          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,6 @@ void	set_labels_and_dist(t_map *map)
 	}
 }
 
-void	set_actual_dist(t_map *map)
-{
-	t_room		*room;
-
-	room = map->rooms;
-	while (room)
-	{
-		room->actual_dist = room->distance;
-		room = room->next;
-	}
-}
-
 t_queue	*get_minimal_path(t_lemin *lemin)
 {
 	t_room		*path;
@@ -65,17 +53,29 @@ t_queue	*get_minimal_path(t_lemin *lemin)
 		distance = path->distance;
 		while (bond)
 		{
-			if (bond->bond->distance < distance)
+			if (bond->bond->distance <= distance)
 			{
 				distance = bond->bond->distance;
 				next = bond->bond;
 			}
 			bond = bond->next;
 		}
-		add_to_queue(&min, &last, next);
+		add_to_queue_begin(&min, &last, next);
 		path = next;
 	}
 	return (min);
+}
+
+void	set_actual_dist(t_map *map)
+{
+	t_room		*room;
+
+	room = map->rooms;
+	while (room != NULL)
+	{
+		room->actual_dist = room->distance;
+		room = room->next;
+	}
 }
 
 int		dist_map(t_lemin *lemin)
@@ -124,13 +124,28 @@ void	redistance(t_room *room)
 	{
 		while (list != NULL)
 		{
-			if (list->bond->distance < dist && list->bond->se != 2)
+			if (list->bond->se == 2)
+				return ;
+			if (list->bond->distance < dist)
 				dist = list->bond->distance + 1;
 			list = list->next;
 		}
 		if (room->se != 2)
 			room->distance = dist;
 	}
+}
+
+int		get_weight(t_queue *path)
+{
+	int			ret;
+
+	ret = 0;
+	while (path != NULL)
+	{
+		ret++;
+		path = path->next;
+	}
+	return (ret);
 }
 
 void	redo_hefts(t_queue *path, t_lemin *lemin)
@@ -140,23 +155,28 @@ void	redo_hefts(t_queue *path, t_lemin *lemin)
 	t_queue		*last;
 	t_room		*room;
 	int			dist;
+	int			weight;
 
 	min = NULL;
 	last = NULL;
 	dbl = path;
-	lemin->begin->distance++;
+	weight = 1;//get_weight(path);
+	lemin->begin->distance = lemin->begin->distance + weight;
 	while (dbl != NULL)
 	{
 		if (dbl->room != lemin->end)
-			dbl->room->distance = dbl->room->distance + 1;
+			dbl->room->distance = dbl->room->distance + weight;
 		dbl = dbl->next;
 	}
 	dbl = path;
 	set_labels_to_zero(lemin);
-	add_neighbors_to_queue(lemin->begin, &min, &last);
+	decisive_add_neighbors(lemin->begin, &min, &last);
+	lemin->begin->label = 1;
 	while (dbl != NULL)
 	{
-		add_neighbors_to_queue(dbl->room, &min, &last);
+
+		if (dbl->room->se != 2)
+			decisive_add_neighbors(dbl->room, &min, &last);
 		dbl->room->label = 1;
 		dbl = dbl->next;
 	}
@@ -174,6 +194,12 @@ void	redo_hefts(t_queue *path, t_lemin *lemin)
 		else
 			delete_first_elem(&min);
 	}
+	// room = lemin->map->rooms;
+	// while (room != NULL)
+	// {
+	// 	room->distance += room->actual_dist;
+	// 	room = room->next;
+	// }
 }
 
 void	print_path(t_queue *path, int ants)
@@ -205,6 +231,45 @@ void	solve(t_map *map, t_lemin *lemin)
 	}
 }
 
+void	init_ants(t_lemin *lemin)
+{
+	int			num;
+	t_ant		*ants;
+
+	num = 0;
+	ants = lemin->ants;
+	while (num < lemin->map->ants)
+	{
+		(lemin->ants)[num].position = lemin->begin;
+		(lemin->ants)[num].finish = 0;
+		ants++;
+	}
+}
+
+// void	print_moves(t_lemin *lemin)
+// {
+// 	int			ants;
+// 	int			all;
+
+// 	init_ants(lemin);
+// 	while (all != lemin->map->ants)
+// 	{
+// 		ants = 0;
+// 		while (ants < lemin->map->ants)
+// 		{
+// 			if (lemin->ants[ants].finish == 1)
+// 				continue;
+// 			if (lemin->ants[ants].position == lemin->begin && lemin->ants[ants].path->room->ant == 0)
+// 			{
+// 				lemin->ants[ants].position = lemin->ants[ants].path->room;
+// 				lemin->ants[ants].path->room = 1;
+// 			}
+			
+// 		}
+// 		ft_printf("\n");
+// 	}
+// }
+
 int		 main(void)
 {
 	t_lemin		lemin;
@@ -223,6 +288,7 @@ int		 main(void)
 		exit (0);
 	}
 	solve(map, &lemin);
+	// print_moves(&lemin);
 	free(map->file);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 14:25:20 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/28 17:49:25 by sbrella          ###   ########.fr       */
+/*   Updated: 2019/07/30 18:51:00 by sbrella          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct		s_room
 	int				y;
 	int				label;
 	int				distance;
+	int				ant;
 	int				actual_dist;
 }					t_room;
 
@@ -124,5 +125,6 @@ int					delete_unconnected(t_map *map);
 void				add_neighbors_to_queue(t_room *room, t_queue **queue, t_queue **last);
 void				define_dist(t_room *room);
 void				delete_first_elem(t_queue **queue);
-
+void				decisive_add_neighbors(t_room *room, t_queue **queue, t_queue **last);
+void				add_to_queue_begin(t_queue **queue, t_queue **last, t_room *room);
 #endif
