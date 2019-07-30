@@ -6,7 +6,7 @@
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 18:37:50 by ilya              #+#    #+#             */
-/*   Updated: 2019/07/28 18:36:50 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/30 15:45:21 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,15 @@
 # define LIGHT 0
 # define FOV 90 * ((2 * 3.1415) / 360)
 # define BUFF_SIZE 128;
+
+typedef struct			s_map
+{
+	int					ants;
+	struct s_rooms		*rooms;
+	struct s_bonds		*bonds;
+	struct s_steps		*steps;
+}						t_map;
+
 
 typedef struct			s_rooms
 {
@@ -101,8 +110,30 @@ typedef struct			s_objects
 	t_object			*bodies;
 }						t_objects;
 
-char					*ft_read(void);
 
+void					adding_data(t_map *map);
+char					*ft_read(void);
+void					ft_split_input(char *input, char **str, int *ants);
+
+void					ft_make_map(t_rooms *rooms, t_bonds *bonds, t_steps *steps, char **str);
+int						ft_make_hash(char **str, int *i);
+void					ft_return(char **str);
+
+void					ft_make_room(char *str, int *check_type, t_rooms *rooms);
+t_rooms					*add_first_room(void);
+void					add_new_room(t_rooms *rooms);
+void					ft_write_room(t_rooms *rooms, char **make_room);
+
+void					ft_make_bond(char *str, int *check_type, t_bonds *bonds, t_rooms *rooms);
+t_bonds					*add_first_bond(void);
+void					add_new_bond(t_bonds *bonds);
+void					write_new_bond(t_bonds *bonds, t_rooms *rooms, char **str);
+
+void					ft_make_step(char *str, t_steps *steps, t_rooms *rooms)
+void					ft_remove_l(char **make_step);
+void					ft_find_step(t_step *step, t_rooms *rooms, char *str);
+t_steps					*add_first_steps(void);
+void					add_new_steps(t_steps *steps);
 // t_vector				cross_product(t_vector one, t_vector two);
 // double					scalar_product(t_vector one, t_vector two);
 // void					rotate_horizontal(t_camera *camera, double angle);

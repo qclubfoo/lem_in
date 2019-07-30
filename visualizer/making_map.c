@@ -6,27 +6,24 @@
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/28 17:54:09 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/28 18:35:30 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/30 15:42:35 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./inc/visualizer.h"
 
-int	function(void)
+void	adding_data(t_map *map)
 {
-	int		ants;
 	char	*input;
 	char	**str;
-	t_rooms	*rooms;
-	t_bonds *bonds;
-	t_steps *steps;
 
+	map->rooms = NULL;
+	map->bonds = NULL;
+	map->steps = NULL;
 	input = read();
-	i = 0;
-	ft_split_input(input, str, &ants);
-	ft_make_map(rooms, bonds, steps, str);
-
-	return (ants);
+	ft_split_input(input, str, &(map->ants));
+	ft_make_map(map->rooms, map->bonds, map->steps, str);
+	ft_return(str);
 }
 
 void	ft_split_input(char *input, char **str, int *ants)
@@ -49,37 +46,44 @@ void	ft_make_map(t_rooms *rooms, t_bonds *bonds, t_steps *steps, char **str)
 		if (ft_make_hash(str, &i))
 			continue ;
 		if (check_type == 1)
-			ft_make_room(str[i], &check_type);
+			ft_make_room(str[i], &check_type, rooms);
 		if (check_type == 2)
+			ft_make_bond(str[i], &check_type, bonds, rooms);
+		if (check_type == 3)
 		{
-			if (ft_make_bond(str[i], map))
-			{
-				ft_return(str);
-				return (1);
-			}
+			if (steps == NULL)
+				steps = add_first_steps();
+			else
+				add_new_steps(steps);
+			ft_make_step(str[i], steps);
 		}
 		i++;
 	}
-
 }
-int		ft_make_hash(char **str, int *i, int *se)
+
+int		ft_make_hash(char **str, int *i)
 {
-	if (ft_strcmp(str[*i], "##start"))
-	{
-		*se = 1;
-		*i += 1;
-		return (1);
-	}
-	else if (ft_strcmp(str[*i], "##end"))
-	{
-		*se = 2;
-		*i += 1;
-		return (1);
-	}
-	else if (str[*i][0] == '#')
+	if (str[*i][0] == '#')
 	{
 		*i += 1;
 		return (1);
 	}
 	return (0);
+}
+
+void	ft_return(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != NULL)
+	{
+		free(str[i]);
+		str[i] = NULL;
+		i++;
+	}
+	free(str[i]);
+	str[i] = NULL;
+	free(str);
+	str = NULL;
 }
