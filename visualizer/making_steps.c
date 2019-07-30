@@ -6,7 +6,7 @@
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 13:01:08 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/30 19:30:41 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/30 21:37:29 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,6 @@ void	ft_make_step(char *str, t_steps **steps, t_rooms *rooms)
 		else
 			add_new_separate_step(&(tmp->step));
 		ft_find_step(&tmp->step, rooms, make_step[i]);
-		// if (tmp->step == NULL)
-		// tmp->step = (t_step*)malloc(sizeof(t_step));
-		// new = tmp->step;
-		// new->ant_num = -1;
-		// new->x = -1;
-		// new->y = -1;
-		// new->next = NULL;
-		// puts("tut");
-		// ft_find_step(new, rooms, make_step[i]);
-		// tmp = NULL;
 		i++;
 	}
 	ft_return(make_step);

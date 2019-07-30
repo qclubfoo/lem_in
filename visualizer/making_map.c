@@ -6,7 +6,7 @@
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/28 17:54:09 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/30 19:51:22 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/30 21:50:41 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,18 @@ char	**ft_split_input(char *input, t_map *map)
 void	ft_make_map(t_rooms **rooms, t_bonds **bonds, t_steps **steps, char **str)
 {
 	int		i;
+	int		se;
 	int		check_type;
 
 	i = 1;
+	se = 0;
 	check_type = 1;
 	while (str[i] != NULL)
 	{
-		if (ft_make_hash(str, i))
-		{
-			i++;
+		if (ft_make_hash(str, &i, &se))
 			continue ;
-		}
 		if (check_type == 1)
-			ft_make_room(str[i], &check_type, rooms);
+			ft_make_room(str[i], &check_type, rooms, &se);
 		if (check_type == 2){
 			ft_make_bond(str[i], &check_type, bonds, *rooms);}
 		if (check_type == 3)
@@ -71,11 +70,23 @@ void	ft_make_map(t_rooms **rooms, t_bonds **bonds, t_steps **steps, char **str)
 	}
 }
 
-int		ft_make_hash(char **str, int i)
+int		ft_make_hash(char **str, int *i, int *se)
 {
-	if (str[i][0] == '#')
+	if (ft_strcmp(str[*i], "##start"))
 	{
-		i += 1;
+		*i += 1;
+		*se = 1;
+		return (1);
+	}
+	else if (ft_strcmp(str[*i], "##end"))
+	{
+		*i += 1;
+		*se = 2;
+		return (1);
+	}
+	else if (str[*i][0] == '#')
+	{
+		*i += 1;
 		return (1);
 	}
 	return (0);

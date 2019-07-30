@@ -6,13 +6,13 @@
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 11:24:57 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/30 18:17:54 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/30 21:56:08 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./inc/visualizer.h"
 
-void	ft_make_room(char *str, int *check_type, t_rooms **rooms)
+void	ft_make_room(char *str, int *check_type, t_rooms **rooms, int *se)
 {
 	char	**make_room;
 	int		i;
@@ -26,15 +26,15 @@ void	ft_make_room(char *str, int *check_type, t_rooms **rooms)
 	else
 	{
 		if (*rooms == NULL)
-			*rooms = add_first_room();
+			*rooms = add_first_room(se);
 		else
-			add_new_room(*rooms);
+			add_new_room(*rooms, se);
 		ft_write_room(*rooms, make_room);
 	}
 	ft_return(make_room);
 }
 
-t_rooms	*add_first_room(void)
+t_rooms	*add_first_room(int *se)
 {
 	t_rooms	*first_room;
 
@@ -43,11 +43,18 @@ t_rooms	*add_first_room(void)
 	first_room->name = NULL;
 	first_room->x = -1;
 	first_room->y = -1;
+	if (se)
+	{
+		first_room->se = *se;
+		*se = 0;
+	}
+	else
+		first_room->se = 0;
 	first_room->next = NULL;
 	return (first_room);
 }
 
-void	add_new_room(t_rooms *rooms)
+void	add_new_room(t_rooms *rooms, int *se)
 {
 	t_rooms	*tmp;
 
@@ -59,6 +66,13 @@ void	add_new_room(t_rooms *rooms)
 	tmp->name = NULL;
 	tmp->x = -1;
 	tmp->y = -1;
+	if (se)
+	{
+		tmp->se = *se;
+		*se = 0;
+	}
+	else
+		tmp->se = 0;
 	tmp->next = NULL;
 }
 
