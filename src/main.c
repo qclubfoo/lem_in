@@ -6,80 +6,11 @@
 /*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 19:10:34 by sbrella           #+#    #+#             */
-/*   Updated: 2019/07/31 18:29:44 by sbrella          ###   ########.fr       */
+/*   Updated: 2019/07/31 18:56:13 by sbrella          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lem_in.h"
-
-void			set_actual_dist(t_map *map)
-{
-	t_room		*room;
-
-	room = map->rooms;
-	while (room != NULL)
-	{
-		room->actual_dist = room->distance;
-		room = room->next;
-	}
-}
-
-int				dist_map(t_lemin *lemin)
-{
-	set_labels_and_dist(lemin->map);
-	set_distance(lemin->map);
-	set_actual_dist(lemin->map);
-	return (0);
-}
-
-void			print_map(t_map *map)
-{
-	t_room		*curr;
-
-	curr = map->rooms;
-	while (curr != NULL)
-	{
-		ft_printf("%s %d\n", curr->name, curr->distance);
-		curr = curr->next;
-	}
-	printf("\n");
-}
-
-void			set_labels_to_zero(t_lemin *lemin)
-{
-	t_room		*room;
-
-	room = lemin->map->rooms;
-	while (room != NULL)
-	{
-		room->label = 0;
-		room = room->next;
-	}
-}
-
-void			redistance(t_room *room)
-{
-	t_bond		*list;
-	int			dist;
-
-	if (room->se == 2)
-		return ;
-	list = room->bonds;
-	dist = __INT_MAX__;
-	if (room->label != 1)
-	{
-		while (list != NULL)
-		{
-			if (list->bond->se == 2)
-				return ;
-			if (list->bond->distance < dist)
-				dist = list->bond->distance + 1;
-			list = list->next;
-		}
-		if (room->se != 2)
-			room->distance = dist;
-	}
-}
 
 int				get_weight(t_queue *path)
 {
@@ -101,17 +32,15 @@ void			redo_hefts(t_queue *path, t_lemin *lemin)
 	t_queue		*last;
 	t_room		*room;
 	int			dist;
-	int			weight;
 
 	min = NULL;
 	last = NULL;
 	dbl = path;
-	weight = 1;//get_weight(path);
-	lemin->begin->distance = lemin->begin->distance + weight;
+	lemin->begin->distance = lemin->begin->distance + 1;
 	while (dbl != NULL)
 	{
 		if (dbl->room != lemin->end)
-			dbl->room->distance = dbl->room->distance + weight;
+			dbl->room->distance = dbl->room->distance + 1;
 		dbl = dbl->next;
 	}
 	dbl = path;
@@ -120,7 +49,6 @@ void			redo_hefts(t_queue *path, t_lemin *lemin)
 	lemin->begin->label = 1;
 	while (dbl != NULL)
 	{
-
 		if (dbl->room->se != 2)
 			decisive_add_neighbors(dbl->room, &min, &last);
 		dbl->room->label = 1;
@@ -140,12 +68,6 @@ void			redo_hefts(t_queue *path, t_lemin *lemin)
 		else
 			delete_first_elem(&min);
 	}
-	// room = lemin->map->rooms;
-	// while (room != NULL)
-	// {
-	// 	room->distance += room->actual_dist;
-	// 	room = room->next;
-	// }
 }
 
 void			print_path(t_queue *path, int ants)
@@ -165,14 +87,10 @@ void			solve(t_map *map, t_lemin *lemin)
 	ants = 0;
 	delete_unconnected(map);
 	dist_map(lemin);
-	// print_map(map);
-	// printf("\n");
 	while (ants < map->ants)
 	{
 		(lemin->ants)[ants].path = get_minimal_path(lemin);
-		// print_path((lemin->ants)[ants].path, ants);
 		redo_hefts(((lemin->ants)[ants]).path, lemin);
-		// print_map(map);
 		ants++;
 	}
 }
@@ -197,58 +115,6 @@ t_room			*get_next(t_queue *path, t_room *pos)
 	while (path->room != pos)
 		path = path->next;
 	return (path->next->room);
-}
-
-void			print_moves(t_lemin *lemin)
-{
-	int			ants;
-	int			all;
-	t_room		*next;
-
-	init_ants(lemin);
-	all = 0;
-	while (all != lemin->map->ants)
-	{
-		ants = -1;
-		while (++ants < lemin->map->ants)
-		{
-			if (lemin->ants[ants].finish == 1)
-				continue;
-			if (lemin->ants[ants].position == lemin->begin)
-			{
-				if (lemin->ants[ants].path->room->ant == 0)
-				{
-					lemin->ants[ants].position = lemin->ants[ants].path->room;
-					if (lemin->ants[ants].path->room->se != 2)
-						lemin->ants[ants].path->room->ant = 1;
-					else
-					{
-						all++;
-						lemin->ants[ants].finish = 1;
-					}
-					ft_printf("L%d-%s ", ants + 1, lemin->ants[ants].position->name);
-				}
-			}
-			else
-			{
-				next = get_next(lemin->ants[ants].path, lemin->ants[ants].position);
-				if (next->ant == 0)
-				{
-					if (next->se != 2)
-						next->ant = 1;
-					else
-					{
-						all++;
-						lemin->ants[ants].finish = 1;
-					}
-					lemin->ants[ants].position->ant = 0;
-					lemin->ants[ants].position = next;
-					ft_printf("L%d-%s ", ants + 1, lemin->ants[ants].position->name);
-				}
-			}
-		}
-		ft_printf("\n");
-	}
 }
 
 void			free_path(t_queue **queue)
@@ -295,7 +161,7 @@ void			free_everything(t_lemin *lemin)
 	free(lemin->map);
 }
 
-int				 main(void)
+int				main(void)
 {
 	t_lemin		lemin;
 	t_map		*map;
