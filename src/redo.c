@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 19:26:38 by sbrella           #+#    #+#             */
-/*   Updated: 2019/07/31 19:27:39 by sbrella          ###   ########.fr       */
+/*   Updated: 2019/07/31 19:50:47 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ void			init_ants(t_lemin *lemin)
 	{
 		(lemin->ants)[num].position = lemin->begin;
 		(lemin->ants)[num].finish = 0;
+		(lemin->ants)[num].number = -1;
 		num++;
 	}
 }

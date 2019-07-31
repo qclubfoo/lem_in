@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 19:17:31 by sbrella           #+#    #+#             */
-/*   Updated: 2019/07/31 19:27:32 by sbrella          ###   ########.fr       */
+/*   Updated: 2019/07/31 19:45:17 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int				main(void)
 		ft_printf("%s\n", map->file);
 	else
 	{
-		ft_printf("Error\n");
+		ft_printf("ERROR\n");
 		exit(0);
 	}
 	solve(map, &lemin);
