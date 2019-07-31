@@ -6,7 +6,7 @@
 /*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 19:10:34 by sbrella           #+#    #+#             */
-/*   Updated: 2019/07/30 21:23:00 by sbrella          ###   ########.fr       */
+/*   Updated: 2019/07/31 17:00:07 by sbrella          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -281,7 +281,7 @@ void	print_moves(t_lemin *lemin)
 						all++;
 						lemin->ants[ants].finish = 1;
 					}
-					ft_printf("%d %d-%s ", i, ants + 1, lemin->ants[ants].position->name);
+					ft_printf("L%d-%s ", ants + 1, lemin->ants[ants].position->name);
 				}
 			}
 			else
@@ -298,7 +298,7 @@ void	print_moves(t_lemin *lemin)
 					}
 					lemin->ants[ants].position->ant = 0;
 					lemin->ants[ants].position = next;
-					ft_printf("%d %d-%s ", i, ants + 1, lemin->ants[ants].position->name);
+					ft_printf("L%d-%s ", ants + 1, lemin->ants[ants].position->name);
 				}
 			}
 		}
