@@ -1,6 +1,6 @@
 NAME = lem-in
 
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -Wall -Wextra -Werror
 
 INCLUDES = ./libft/
 
