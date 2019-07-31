@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   visualizer.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 18:37:50 by ilya              #+#    #+#             */
-/*   Updated: 2019/07/30 20:31:25 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/31 17:38:03 by sbrella          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef VISUALIZER_H
+# define VISUALIZER_H
 # include <stdbool.h>
-# include </usr/include/SDL2/SDL.h>
+# include <SDL.h>
 # include <math.h>
 # include <stdlib.h>
 # define WINX 1024
@@ -141,19 +143,4 @@ void					ft_free_map(t_map *map);
 void					ft_free_rooms(t_rooms *rooms);
 void					ft_free_bonds(t_bonds *bonds);
 void					ft_free_steps(t_steps *steps);
-// t_vector				cross_product(t_vector one, t_vector two);
-// double					scalar_product(t_vector one, t_vector two);
-// void					rotate_horizontal(t_camera *camera, double angle);
-// void					rotate_vertical(t_camera *camera, double angle);
-// t_vector				rotate(t_vector axis, t_vector vector, double angle);
-// t_vector				vector_summ(t_vector one, t_vector two);
-// t_vector				vector_diff(t_vector one, t_vector two);
-// t_vector				vector_multiply(t_vector vector, double number);
-// double					distance(t_vector one, t_vector two);
-// void					init_camera(t_camera *cam);
-// void					init_sdl(t_sdl *sdl);
-// void					init_objects(t_objects *objects);
-// int						trace_ray(t_vector direction, t_objects *objects, t_vector point, int is_light);
-// void					print_vec(t_vector direction);
-// t_vector				normalize(t_vector vector);
-// int						vector_equal(t_vector one, t_vector two);
+#endif

@@ -6,13 +6,14 @@ FLAGS = -Wall -Wextra -Werror -g
 
 IDIR = ./inc
 
-CFLAGS = -I/usr/include/SDL2
+CFLAGS = -I libSDL/SDL2.framework/Headers \
+         -I libSDL/SDL2_image.framework/Headers -I./inc/
 
 # LIBFT = libft/
 
 # LIBVEC = vector_lib/
 
-SDL2_F    = -lSDL2 -lm
+SDL2_F    = -framework SDL2 -framework SDL2_image -F ./libSDL/
 
 DIR_S = ./
 
@@ -33,7 +34,7 @@ SOURCES = main.c
 all: obj $(NAME)
 
 $(NAME): $(OBJS)
-		$(CC) -o $(NAME) $(SRCS) $(FLAGS) $(SDL2_F)
+		$(CC) -o $(NAME) $(SOURCES) $(FLAGS) $(CFLAGS) $(SDL2_F)
 
 obj:
 		mkdir -p objects

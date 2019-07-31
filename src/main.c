@@ -6,7 +6,7 @@
 /*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 19:10:34 by sbrella           #+#    #+#             */
-/*   Updated: 2019/07/31 17:00:07 by sbrella          ###   ########.fr       */
+/*   Updated: 2019/07/31 17:32:21 by sbrella          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ t_queue	*get_minimal_path(t_lemin *lemin)
 			}
 			bond = bond->next;
 		}
-		add_to_queue_begin(&min, &last, next);
+		add_to_queue(&min, &last, next);
 		path = next;
 	}
 	return (min);
@@ -365,8 +365,8 @@ int		 main(void)
 		ft_printf("%s\n", map->file);
 	else
 	{
-		/* error */
-		exit (0);
+		ft_printf("Error\n");
+		exit(0);
 	}
 	solve(map, &lemin);
 	print_moves(&lemin);
