@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 14:33:10 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/02 14:06:13 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/30 21:02:43 by sbrella          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*ft_realloc(char *str, int re)
 	ft_bzero(tmp, len + re);
 	ft_strncpy(tmp, str, 0);
 	free(str);
-    str = NULL;
+	str = NULL;
 	return (tmp);
 }
 
