@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   making_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 16:03:41 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/10 19:18:29 by sbrella          ###   ########.fr       */
+/*   Updated: 2019/07/31 19:05:48 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/lem_in.h"
+#include "lem_in.h"
 
 int		ft_make_map(char *input, t_map *map)
 {

@@ -6,11 +6,11 @@
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/30 08:19:51 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/31 18:37:36 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/31 19:05:23 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/lem_in.h"
+#include "lem_in.h"
 
 t_check		*ft_check_map(char *input)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   rooms_adding.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 09:42:16 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/31 18:29:40 by sbrella          ###   ########.fr       */
+/*   Updated: 2019/07/31 19:06:38 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/lem_in.h"
+#include "lem_in.h"
 
 t_room			*add_first_room(void)
 {

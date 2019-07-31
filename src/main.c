@@ -3,14 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 19:10:34 by sbrella           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2019/07/31 19:12:50 by sbrella          ###   ########.fr       */
+=======
+<<<<<<< HEAD
+/*   Updated: 2019/07/31 19:05:41 by qclubfoo         ###   ########.fr       */
+=======
+/*   Updated: 2019/07/31 18:56:13 by sbrella          ###   ########.fr       */
+>>>>>>> e0dbe306200d4f3df297afb98284b26d7f44fa4e
+>>>>>>> 424e88bee7cfb70142326d3b4e979c80dc20ac1b
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/lem_in.h"
+#include "lem_in.h"
 
 int				get_weight(t_queue *path)
 {

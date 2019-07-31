@@ -6,11 +6,11 @@
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/30 23:13:51 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/10 17:52:02 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/31 19:05:20 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/lem_in.h"
+#include "lem_in.h"
 
 void	*exit_checking(t_check *check, char **str)
 {

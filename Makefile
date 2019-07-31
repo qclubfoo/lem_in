@@ -4,7 +4,10 @@ FLAGS = -Wall -Wextra -Werror
 
 INCLUDES = ./libft/
 
-FILES = ./src/*.c
+FILES = ./src/checking_hash.c ./src/checking_map_help.c ./src/checking_map.c \
+		./src/connected.c ./src/connection.c ./src/extra_checking.c \
+		./src/main.c ./src/making_bonds.c ./src/making_map.c ./src/making_rooms.c \
+		./src/path.c ./src/read.c ./src/rooms_adding.c ./src/validate.c
 
 all: $(NAME)
 
