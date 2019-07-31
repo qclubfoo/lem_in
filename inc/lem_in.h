@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 14:25:20 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/31 18:41:51 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/31 19:01:40 by sbrella          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,4 +135,12 @@ void				add_to_queue_begin(t_queue **queue,
 void				set_labels_and_dist(t_map *map);
 t_queue				*get_minimal_path(t_lemin *lemin);
 void				free_queue(t_queue *queue);
+void				set_actual_dist(t_map *map);
+int					dist_map(t_lemin *lemin);
+void				print_map(t_map *map);
+void				set_labels_to_zero(t_lemin *lemin);
+void				redistance(t_room *room);
+void				print_moves(t_lemin *lemin);
+t_room				*get_next(t_queue *path, t_room *pos);
+void				init_ants(t_lemin *lemin);
 #endif
