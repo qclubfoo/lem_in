@@ -6,7 +6,7 @@
 /*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 14:25:20 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/31 19:01:40 by sbrella          ###   ########.fr       */
+/*   Updated: 2019/07/31 19:28:32 by sbrella          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,5 +142,10 @@ void				set_labels_to_zero(t_lemin *lemin);
 void				redistance(t_room *room);
 void				print_moves(t_lemin *lemin);
 t_room				*get_next(t_queue *path, t_room *pos);
+void				init_ants(t_lemin *lemin);
+int					get_weight(t_queue *path);
+void				redo_while(t_queue *dbl, t_queue **min, t_queue **last);
+void				redo_hefts(t_queue *path, t_lemin *lemin);
+void				solve(t_map *map, t_lemin *lemin);
 void				init_ants(t_lemin *lemin);
 #endif
