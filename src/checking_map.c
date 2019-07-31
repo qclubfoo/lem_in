@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checking_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/30 08:19:51 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/31 17:23:13 by sbrella          ###   ########.fr       */
+/*   Updated: 2019/07/31 18:37:36 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,41 +49,6 @@ void		ft_checking(t_check *check, char **str)
 			break ;
 		i++;
 	}
-}
-
-int			ft_check_hash(char **str, int *i, t_check *check)
-{
-	if (ft_strcmp(str[*i], "##start") && check->check_type == 1)
-	{
-		check->start += 1;
-		if (check->start > 1)
-			check->err = 1;
-		if (str[*i + 1] != NULL &&
-		(ft_strcmp(str[*i + 1], "##end") || ft_strchr(str[*i + 1], '-')))
-			check->err = 1;
-		*i += 1;
-		check->flag += 1;
-		return (1);
-	}
-	else if (ft_strcmp(str[*i], "##end") && check->check_type == 1)
-	{
-		check->end += 1;
-		if (check->end > 1)
-			check->err = 1;
-		if (str[*i + 1] != NULL &&
-		(ft_strcmp(str[*i + 1], "##start") || ft_strchr(str[*i + 1], '-')))
-			check->err = 1;
-		*i += 1;
-		check->flag += 1;
-		return (1);
-	}
-	else if (str[*i][0] == '#')
-	{
-		check->comments += 1;
-		*i += 1;
-		return (1);
-	}
-	return (0);
 }
 
 void		check_room(char *str, t_check *check)

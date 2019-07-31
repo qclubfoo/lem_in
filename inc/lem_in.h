@@ -6,7 +6,7 @@
 /*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 14:25:20 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/31 18:53:37 by sbrella          ###   ########.fr       */
+/*   Updated: 2019/07/31 19:01:40 by sbrella          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ char				*ft_realloc(char *str, int re);
 t_check				*ft_check_map(char *input);
 void				ft_checking(t_check *check, char **str);
 int					ft_check_hash(char **str, int *i, t_check *check);
+int					ft_start(char **str, int *i, t_check *check);
+int					ft_end(char **str, int *i, t_check *check);
 void				check_room(char *str, t_check *check);
 void				check_bond(char *str, t_check *check);
 
