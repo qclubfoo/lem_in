@@ -6,67 +6,13 @@
 /*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 19:10:34 by sbrella           #+#    #+#             */
-/*   Updated: 2019/07/31 17:32:21 by sbrella          ###   ########.fr       */
+/*   Updated: 2019/07/31 18:29:44 by sbrella          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lem_in.h"
 
-t_room	*find_exit(t_map *map)
-{
-	t_room		*room;
-
-	room = map->rooms;
-	while (room != NULL && room->se != 2)
-		room = room->next;
-	return (room);
-}
-
-void	set_labels_and_dist(t_map *map)
-{
-	t_room		*room;
-
-	room = map->rooms;
-	while (room)
-	{
-		room->label = 0;
-		room->distance = __INT_MAX__;
-		room = room->next;
-	}
-}
-
-t_queue	*get_minimal_path(t_lemin *lemin)
-{
-	t_room		*path;
-	t_room		*next;
-	t_bond		*bond;
-	t_queue		*min;
-	t_queue		*last;
-	int			distance;
-
-	min = NULL;
-	last = NULL;
-	path = lemin->begin;
-	while (path->distance != 0)
-	{
-		bond = path->bonds;
-		distance = path->distance;
-		while (bond)
-		{
-			if (bond->bond->distance <= distance)
-			{
-				distance = bond->bond->distance;
-				next = bond->bond;
-			}
-			bond = bond->next;
-		}
-		add_to_queue(&min, &last, next);
-		path = next;
-	}
-	return (min);
-}
-
-void	set_actual_dist(t_map *map)
+void			set_actual_dist(t_map *map)
 {
 	t_room		*room;
 
@@ -78,7 +24,7 @@ void	set_actual_dist(t_map *map)
 	}
 }
 
-int		dist_map(t_lemin *lemin)
+int				dist_map(t_lemin *lemin)
 {
 	set_labels_and_dist(lemin->map);
 	set_distance(lemin->map);
@@ -86,7 +32,7 @@ int		dist_map(t_lemin *lemin)
 	return (0);
 }
 
-void	print_map(t_map *map)
+void			print_map(t_map *map)
 {
 	t_room		*curr;
 
@@ -99,7 +45,7 @@ void	print_map(t_map *map)
 	printf("\n");
 }
 
-void	set_labels_to_zero(t_lemin *lemin)
+void			set_labels_to_zero(t_lemin *lemin)
 {
 	t_room		*room;
 
@@ -111,7 +57,7 @@ void	set_labels_to_zero(t_lemin *lemin)
 	}
 }
 
-void	redistance(t_room *room)
+void			redistance(t_room *room)
 {
 	t_bond		*list;
 	int			dist;
@@ -135,7 +81,7 @@ void	redistance(t_room *room)
 	}
 }
 
-int		get_weight(t_queue *path)
+int				get_weight(t_queue *path)
 {
 	int			ret;
 
@@ -148,7 +94,7 @@ int		get_weight(t_queue *path)
 	return (ret);
 }
 
-void	redo_hefts(t_queue *path, t_lemin *lemin)
+void			redo_hefts(t_queue *path, t_lemin *lemin)
 {
 	t_queue		*dbl;
 	t_queue		*min;
@@ -202,7 +148,7 @@ void	redo_hefts(t_queue *path, t_lemin *lemin)
 	// }
 }
 
-void	print_path(t_queue *path, int ants)
+void			print_path(t_queue *path, int ants)
 {
 	while (path != NULL)
 	{
@@ -212,7 +158,7 @@ void	print_path(t_queue *path, int ants)
 	printf("\n");
 }
 
-void	solve(t_map *map, t_lemin *lemin)
+void			solve(t_map *map, t_lemin *lemin)
 {
 	int			ants;
 
@@ -231,7 +177,7 @@ void	solve(t_map *map, t_lemin *lemin)
 	}
 }
 
-void	init_ants(t_lemin *lemin)
+void			init_ants(t_lemin *lemin)
 {
 	int			num;
 	t_ant		*ants;
@@ -246,19 +192,18 @@ void	init_ants(t_lemin *lemin)
 	}
 }
 
-t_room	*get_next(t_queue *path, t_room *pos)
+t_room			*get_next(t_queue *path, t_room *pos)
 {
 	while (path->room != pos)
 		path = path->next;
 	return (path->next->room);
 }
 
-void	print_moves(t_lemin *lemin)
+void			print_moves(t_lemin *lemin)
 {
 	int			ants;
 	int			all;
 	t_room		*next;
-	static int	i = 0;
 
 	init_ants(lemin);
 	all = 0;
@@ -302,12 +247,11 @@ void	print_moves(t_lemin *lemin)
 				}
 			}
 		}
-		i++;
 		ft_printf("\n");
 	}
 }
 
-void	free_path(t_queue **queue)
+void			free_path(t_queue **queue)
 {
 	int			count;
 
@@ -316,7 +260,7 @@ void	free_path(t_queue **queue)
 		delete_first_elem(queue);
 }
 
-void	free_bonds(t_bond *bonds)
+void			free_bonds(t_bond *bonds)
 {
 	t_bond		*next;
 
@@ -328,7 +272,7 @@ void	free_bonds(t_bond *bonds)
 	}
 }
 
-void	free_everything(t_lemin *lemin)
+void			free_everything(t_lemin *lemin)
 {
 	int			ants;
 	t_room		*curr;
@@ -351,7 +295,7 @@ void	free_everything(t_lemin *lemin)
 	free(lemin->map);
 }
 
-int		 main(void)
+int				 main(void)
 {
 	t_lemin		lemin;
 	t_map		*map;

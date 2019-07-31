@@ -6,7 +6,7 @@
 /*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 14:25:20 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/31 17:08:45 by sbrella          ###   ########.fr       */
+/*   Updated: 2019/07/31 18:13:29 by sbrella          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,4 +130,7 @@ void				decisive_add_neighbors(t_room *room,
 					t_queue **queue, t_queue **last);
 void				add_to_queue_begin(t_queue **queue,
 					t_queue **last, t_room *room);
+void				set_labels_and_dist(t_map *map);
+t_queue				*get_minimal_path(t_lemin *lemin);
+void				free_queue(t_queue *queue);
 #endif
