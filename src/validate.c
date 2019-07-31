@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 14:39:17 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/27 19:32:58 by sbrella          ###   ########.fr       */
+/*   Updated: 2019/07/31 18:56:08 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,17 +79,3 @@ void	ft_free_and_exit(t_map *map, t_check *check, char *str)
 	check = NULL;
 	ft_exit(str);
 }
-
-// печать комнат и их содержимого (если понадобится для проверки)
-	// printf("ants = %d\n", map->ants);
-	// while (map->rooms != NULL)
-	// {
-	// 	printf("room_name = %s\nse = %d\nx = %d\ny = %d\nbonds: ", map->rooms->name, map->rooms->se, map->rooms->x, map->rooms->y);
-	// 	while (map->rooms->bonds != NULL)
-	// 	{
-	// 		printf("%s ", map->rooms->bonds->bond->name);
-	// 		map->rooms->bonds = map->rooms->bonds->next;
-	// 	}
-	// 	printf("\n");
-	// 	map->rooms = map->rooms->next;
-	// }
