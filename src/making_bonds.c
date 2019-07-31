@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   making_bonds.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilya <ilya@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 19:09:31 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/22 14:58:16 by ilya             ###   ########.fr       */
+/*   Updated: 2019/07/31 19:05:45 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/lem_in.h"
+#include "lem_in.h"
 
 int		ft_make_bond(char *str, t_map *map)
 {

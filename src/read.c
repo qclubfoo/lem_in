@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 14:33:10 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/30 21:02:43 by sbrella          ###   ########.fr       */
+/*   Updated: 2019/07/31 19:05:59 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/lem_in.h"
+#include "lem_in.h"
 
 char	*ft_realloc(char *str, int re)
 {

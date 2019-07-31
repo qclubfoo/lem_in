@@ -6,11 +6,11 @@
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 19:18:35 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/08 19:19:02 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/31 19:05:38 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/lem_in.h"
+#include "lem_in.h"
 
 void	ft_check_el(t_check *check, char *str)
 {

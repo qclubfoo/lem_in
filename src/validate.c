@@ -6,11 +6,11 @@
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 14:39:17 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/31 18:56:08 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/31 19:06:05 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/lem_in.h"
+#include "lem_in.h"
 
 t_map	*validate(void)
 {

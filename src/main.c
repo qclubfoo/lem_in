@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 19:10:34 by sbrella           #+#    #+#             */
-/*   Updated: 2019/07/31 18:29:44 by sbrella          ###   ########.fr       */
+/*   Updated: 2019/07/31 19:05:41 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/lem_in.h"
+#include "lem_in.h"
 
 void			set_actual_dist(t_map *map)
 {

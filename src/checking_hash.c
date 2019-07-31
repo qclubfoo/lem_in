@@ -6,11 +6,11 @@
 /*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 18:37:11 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/31 18:58:24 by qclubfoo         ###   ########.fr       */
+/*   Updated: 2019/07/31 19:04:55 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/lem_in.h"
+#include "lem_in.h"
 
 int		ft_check_hash(char **str, int *i, t_check *check)
 {

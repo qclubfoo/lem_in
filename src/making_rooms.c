@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   making_rooms.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qclubfoo <qclubfoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 19:06:05 by qclubfoo          #+#    #+#             */
-/*   Updated: 2019/07/10 18:37:58 by sbrella          ###   ########.fr       */
+/*   Updated: 2019/07/31 19:05:54 by qclubfoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/lem_in.h"
+#include "lem_in.h"
 
 void	ft_make_room(char *str, t_map *map, int *check_type, int *se)
 {
